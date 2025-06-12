@@ -1,13 +1,26 @@
 import './App.css'
 import Home from './models/Home/Home'
+import Particles from '../src/components/Background/Particles'; // Adjust path as needed
 
 function App() {
 
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
-      <Home />
+    <div style={{ width: '100%', height: '100vh', position: 'relative',boxSizing:'border-box' }}>
+      {/* <Particles
+        particleColors={['#ffffff', '#ffffff']}
+        particleCount={500}
+        particleSpread={10}
+        speed={0.1}
+        particleBaseSize={100}
+        moveParticlesOnHover={true}
+        alphaParticles={false}
+        disableRotation={false}> */}
+        <Home />
+      {/* </Particles> */}
     </div>
+
+
   )
 }
 
