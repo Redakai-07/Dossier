@@ -54,56 +54,61 @@
 
 // export default Skills;
 
+import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
-
 
 const skills = [
-    { name: "HTML5", level: 95, icon: "devicon-html5-plain colored" },
-    { name: "CSS3", level: 90, icon: "devicon-css3-plain colored" },
-    { name: "JavaScript", level: 88, icon: "devicon-javascript-plain colored" },
-    { name: "React", level: 85, icon: "devicon-react-original colored" },
-    { name: "Node.js", level: 78, icon: "devicon-nodejs-plain colored" },
-    { name: "MongoDB", level: 70, icon: "devicon-mongodb-plain colored" },
-    { name: "Git & GitHub", level: 80, icon: "devicon-git-plain colored" },
-    { name: "Django", level: 65, icon: "devicon-django-plain colored" },
+  { name: 'HTML5', level: 95, icon: 'devicon-html5-plain colored' },
+  { name: 'CSS3', level: 90, icon: 'devicon-css3-plain colored' },
+  { name: 'JavaScript', level: 88, icon: 'devicon-javascript-plain colored' },
+  { name: 'React', level: 85, icon: 'devicon-react-original colored' },
+  { name: 'Node.js', level: 78, icon: 'devicon-nodejs-plain colored' },
+  { name: 'MongoDB', level: 70, icon: 'devicon-mongodb-plain colored' },
+  { name: 'Git & GitHub', level: 80, icon: 'devicon-git-plain colored' },
+  { name: 'Django', level: 65, icon: 'devicon-django-plain colored' },
 ];
 
 const Skills = () => {
-    useEffect(() => {
-        AOS.init({ duration: 800 });
-    }, []);
-    return (
-        <section id="skills" className="bg-gray-950 text-white py-16 px-4 md:px-12">
-            <div className="max-w-5xl mx-auto space-y-2" data-aos="fade-up">
-                <h2 className="text-4xl font-bold text-orange-400 mb-12 text-center">Skills & Tech Stack</h2>
+  useEffect(() => {
+    AOS.init({ duration: 800 });
+  }, []);
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 space-y-2" data-aos="fade-up">
-                    {skills.map((skill, index) => (
-                        <div key={index} className="space-y-2" data-aos="fade-up">
-                            {/* Icon and Tooltip */}
-                            <div className="flex items-center gap-3 group relative space-y-2" data-aos="fade-up">
-                                <i className={`${skill.icon} text-3xl`} />
-                                <span className="text-lg font-semibold text-white">{skill.name}</span>
-                                <span className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-3 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                                    {skill.level}% proficient
-                                </span>
-                            </div>
+  return (
+    <section id="skills" className="bg-gray-950 text-white py-20 px-6 md:px-16">
+      <div className="max-w-6xl mx-auto" data-aos="fade-up">
+        <h2 className="text-4xl font-extrabold text-center text-orange-400 mb-14">Skills & Tech Stack</h2>
 
-                            {/* Skill Bar */}
-                            <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden space-y-2">
-                                <div
-                                    className="bg-orange-500 h-4 rounded-full transition-all duration-1000 ease-in-out space-y-2" data-aos="fade-up"
-                                    style={{ width: `${skill.level}%` }}
-                                />
-                            </div>
-                        </div>
-                    ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="bg-[#1a1a1a] border border-gray-800 rounded-xl p-6 shadow-md hover:shadow-orange-500/10 transition duration-300"
+              data-aos="zoom-in"
+              data-aos-delay={index * 100}
+            >
+              {/* Skill Header */}
+              <div className="flex items-center gap-4 mb-4">
+                <i className={`${skill.icon} text-3xl`} />
+                <div>
+                  <h3 className="text-lg font-semibold text-white">{skill.name}</h3>
+                  <p className="text-sm text-gray-400">{skill.level}% proficient</p>
                 </div>
+              </div>
+
+              {/* Skill Bar */}
+              <div className="relative w-full h-3 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className="absolute top-0 left-0 h-3 bg-gradient-to-r from-orange-500 to-yellow-400 rounded-full transition-all duration-1000 ease-in-out"
+                  style={{ width: `${skill.level}%` }}
+                />
+              </div>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Skills;
