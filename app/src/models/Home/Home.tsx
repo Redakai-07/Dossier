@@ -1,5 +1,4 @@
 import Hero from "../../components/Hero/Hero"
-import Navbar from "../../components/Navbar/Navbar"
 import AboutMe from "../AboutMe/AboutMe"
 import Skills from "../../components/Skills/Skills"
 import Projects from "../../components/Projects/Projects"
@@ -10,7 +9,6 @@ import Education from "../../components/Education/Education"
 const Home = () => {
   return (
     <div>
-        <Navbar />
         <Hero />
         <AboutMe />
         <Skills />

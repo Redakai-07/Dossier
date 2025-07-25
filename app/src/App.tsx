@@ -5,7 +5,7 @@ import Education from './components/Education/Education';
 import AboutMe from './models/AboutMe/AboutMe';
 import Contact from './models/Contact/Contact';
 import Error from './models/PageNotFound/PageNotFound';
-
+import Layout from './components/Layout/Layout';
 // function App() {
 
 // import Particles from '../src/components/Background/Particles';
@@ -29,11 +29,13 @@ import Error from './models/PageNotFound/PageNotFound';
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/education" element={<Education />} />
-        <Route path="/about" element={<AboutMe />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/error" element={<Error />}/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="education" element={<Education />} />
+          <Route path="about" element={<AboutMe />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="error" element={<Error />} />
+        </Route>
       </Routes>
     </Router>
   );
