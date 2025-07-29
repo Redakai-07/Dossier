@@ -1,59 +1,3 @@
-// const skills = {
-//   frontend: [
-//     { name: "HTML5", icon: "devicon-html5-plain colored" },
-//     { name: "CSS3", icon: "devicon-css3-plain colored" },
-//     { name: "JavaScript", icon: "devicon-javascript-plain colored" },
-//     { name: "React", icon: "devicon-react-original colored" },
-//     { name: "Tailwind CSS", icon: "devicon-tailwindcss-plain colored" },
-//   ],
-//   backend: [
-//     { name: "Node.js", icon: "devicon-nodejs-plain colored" },
-//     { name: "Express", icon: "devicon-express-original colored" },
-//     { name: "Django", icon: "devicon-django-plain colored" },
-//     { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
-//     { name: "MySQL", icon: "devicon-mysql-plain colored" },
-//   ],
-//   tools: [
-//     { name: "Git", icon: "devicon-git-plain colored" },
-//     { name: "GitHub", icon: "devicon-github-original" },
-//     { name: "VS Code", icon: "devicon-vscode-plain colored" },
-//     { name: "Figma", icon: "devicon-figma-plain colored" },
-//     { name: "Postman", icon: "devicon-postman-plain colored" },
-//   ],
-// };
-
-// const Skills = () => {
-//   return (
-//     <section id="skills" className="w-full bg-gray-950 text-white py-16 px-4 md:px-12">
-//       <div className="max-w-6xl mx-auto">
-//         <h2 className="text-4xl font-bold text-orange-400 mb-12 text-center">Skills & Tech Stack</h2>
-
-//         {/* Each Category */}
-//         {Object.entries(skills).map(([category, items]) => (
-//           <div key={category} className="mb-10">
-//             <h3 className="text-2xl font-semibold text-white mb-6 capitalize border-l-4 border-orange-400 pl-4">
-//               {category}
-//             </h3>
-//             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-//               {items.map((skill, index) => (
-//                 <div
-//                   key={index}
-//                   className="flex flex-col items-center gap-2 p-4 bg-gray-800 rounded-lg shadow hover:shadow-orange-400/20 transition"
-//                 >
-//                   <i className={`${skill.icon} text-4xl`} />
-//                   <span className="text-sm font-medium text-gray-200">{skill.name}</span>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Skills;
-
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -75,36 +19,69 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" className="bg-gray-950 text-white py-20 px-6 md:px-16">
-      <div className="max-w-6xl mx-auto" data-aos="fade-up">
-        <h2 className="text-4xl font-extrabold text-center text-orange-400 mb-14">Skills & Tech Stack</h2>
+    <section id="skills" className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="relative z-10 max-w-7xl mx-auto" data-aos="fade-up">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
+            Skills & Tech Stack
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            My expertise spans across modern web technologies, from frontend frameworks to backend systems
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="bg-[#1a1a1a] border border-gray-800 rounded-xl p-6 shadow-md hover:shadow-orange-500/10 transition duration-300"
+              className="group bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40"
               data-aos="zoom-in"
               data-aos-delay={index * 100}
             >
               {/* Skill Header */}
-              <div className="flex items-center gap-4 mb-4">
-                <i className={`${skill.icon} text-3xl`} />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl">
+                  <i className={`${skill.icon} text-2xl`} />
+                </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white">{skill.name}</h3>
+                  <h3 className="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors duration-300">
+                    {skill.name}
+                  </h3>
                   <p className="text-sm text-gray-400">{skill.level}% proficient</p>
                 </div>
               </div>
 
               {/* Skill Bar */}
-              <div className="relative w-full h-3 bg-gray-800 rounded-full overflow-hidden">
+              <div className="relative w-full h-3 bg-slate-700 rounded-full overflow-hidden">
                 <div
-                  className="absolute top-0 left-0 h-3 bg-gradient-to-r from-orange-500 to-yellow-400 rounded-full transition-all duration-1000 ease-in-out"
+                  className="absolute top-0 left-0 h-3 bg-gradient-to-r from-blue-500 via-teal-500 to-indigo-400 rounded-full transition-all duration-1000 ease-in-out shadow-lg"
                   style={{ width: `${skill.level}%` }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-teal-400/20 rounded-full"></div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Additional skills section */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-semibold text-white mb-8">Other Technologies</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {['TypeScript', 'Tailwind CSS', 'Express.js', 'PostgreSQL', 'Docker', 'AWS', 'Figma', 'Postman'].map((tech, index) => (
+              <span
+                key={index}
+                className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-teal-600/20 border border-blue-500/30 rounded-full text-blue-300 hover:bg-gradient-to-r hover:from-blue-600/40 hover:to-teal-600/40 transition-all duration-300 cursor-pointer"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

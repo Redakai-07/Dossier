@@ -38,28 +38,42 @@ const AboutMe = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="bg-[#0f0f0f] text-white py-20 px-6 md:px-16"
+      className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Profile */}
-        <div className="flex flex-col md:flex-row gap-10 items-center mb-16">
-          <motion.img
-            src={profileImg}
-            alt="Venkatesh Prabhatha Kana"
+        <div className="flex flex-col md:flex-row gap-12 items-center mb-20">
+          <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="w-44 h-44 rounded-full object-cover border-4 border-orange-500 shadow-md"
-          />
-          <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">About Me</h2>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              I'm <span className="text-orange-300 font-medium">Venkatesh Prabhatha Kana</span>, a
+            className="relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+            <img
+              src={profileImg}
+              alt="Venkatesh Prabhatha Kana"
+              className="relative z-10 w-48 h-48 rounded-full object-cover border-4 border-blue-500/30 shadow-2xl bg-gradient-to-br from-blue-500/10 to-teal-500/10"
+            />
+          </motion.div>
+          
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-6">
+              About Me
+            </h2>
+            <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              I'm <span className="text-blue-300 font-medium">Venkatesh Prabhatha Kana</span>, a
               Computer Science graduate passionate about building well-crafted digital experiences.
             </p>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              With hands-on experience at <span className="text-orange-300">Inventech</span> and{' '}
-              <span className="text-orange-300">Rooman Technologies</span>, I specialize in crafting
+            <p className="text-gray-400 leading-relaxed mb-6">
+              With hands-on experience at <span className="text-blue-300">Inventech</span> and{' '}
+              <span className="text-blue-300">Rooman Technologies</span>, I specialize in crafting
               scalable full-stack apps using technologies like <strong>React.js</strong>,{' '}
               <strong>NestJS</strong>, <strong>Redux</strong>, and <strong>MySQL</strong>.
             </p>
@@ -78,32 +92,39 @@ const AboutMe = () => {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
-              className="bg-[#1a1a1a] p-6 rounded-xl border border-gray-800 shadow hover:shadow-orange-500/20 transition duration-300"
+              className="group bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-blue-500/20 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40"
             >
-              <div className="text-3xl mb-3">{hobby.icon}</div>
-              <h3 className="text-lg font-semibold text-orange-300 mb-2">{hobby.title}</h3>
-              <p className="text-gray-400 text-sm">{hobby.description}</p>
+              <div className="text-4xl mb-4">{hobby.icon}</div>
+              <h3 className="text-xl font-semibold text-blue-300 group-hover:text-blue-200 transition-colors duration-300 mb-3">
+                {hobby.title}
+              </h3>
+              <p className="text-gray-400 text-base leading-relaxed">{hobby.description}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Timeline */}
-        <div className="relative border-l-2 border-orange-500 pl-6 space-y-12">
-          {timeline.map((item, index) => (
-            <motion.div
-              key={index}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={timelineVariants}
-              className="relative"
-            >
-              <div className="absolute -left-[14px] top-1 w-4 h-4 bg-orange-400 rounded-full border-2 border-[#0f0f0f]" />
-              <h4 className="text-base font-semibold text-orange-300">{item.year}</h4>
-              <p className="text-gray-400 text-sm mt-1">{item.event}</p>
-            </motion.div>
-          ))}
+        <div className="relative">
+          <h3 className="text-2xl font-semibold text-white mb-8 text-center">My Journey</h3>
+          <div className="relative border-l-2 border-blue-500 pl-8 space-y-12">
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={timelineVariants}
+                className="relative"
+              >
+                <div className="absolute -left-[18px] top-1 w-6 h-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full border-4 border-gray-900 shadow-lg" />
+                <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-blue-500/20 shadow-lg">
+                  <h4 className="text-lg font-semibold text-blue-300 mb-2">{item.year}</h4>
+                  <p className="text-gray-300 text-base">{item.event}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </motion.section>

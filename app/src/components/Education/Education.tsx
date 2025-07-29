@@ -34,57 +34,102 @@ const certifications = [
 
 const Education = () => {
   return (
-    <section id="education" className="bg-gray-950 text-white py-16 px-4 md:px-12">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-orange-400 mb-12 text-center">
-          Education & Certifications
-        </h2>
+    <section id="education" className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+      </div>
 
-        {/* Education Section */}
-        <div className="mb-10">
-          <h3 className="text-2xl font-semibold text-white mb-6 border-l-4 border-orange-500 pl-4">
-            Education
-          </h3>
-          <ul className="space-y-6">
-            {education.map((item, index) => (
-              <li key={index} className="bg-gray-800 p-4 rounded shadow-md">
-                <h4 className="text-xl font-bold text-orange-300">{item.degree}</h4>
-                <p className="text-gray-300">{item.college}</p>
-                <p className="text-gray-400 text-sm">{item.year}</p>
-              </li>
-            ))}
-          </ul>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-6">
+            Education & Certifications
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            My academic journey and professional certifications that shape my expertise
+          </p>
         </div>
 
-        {/* Certifications Section */}
-        <div>
-          <h3 className="text-2xl font-semibold text-white mb-6 border-l-4 border-orange-500 pl-4">
-            Certifications
-          </h3>
-          <ul className="space-y-6">
-            {certifications.map((cert, index) => (
-              <li key={index} className="bg-gray-800 p-4 rounded shadow-md">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-                  <div>
-                    <h4 className="text-lg font-semibold text-orange-300">{cert.title}</h4>
-                    <p className="text-gray-300 text-sm">
-                      {cert.platform} • {cert.year}
-                    </p>
-                  </div>
-                  {cert.link && (
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 md:mt-0 text-sm text-orange-400 hover:underline"
-                    >
-                      View Certificate →
-                    </a>
-                  )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Education Section */}
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-white">Education</h3>
+            </div>
+            <div className="space-y-6">
+              {education.map((item, index) => (
+                <div
+                  key={index}
+                  className="group bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-blue-500/20 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40"
+                >
+                  <h4 className="text-xl font-bold text-blue-300 group-hover:text-blue-200 transition-colors duration-300 mb-2">
+                    {item.degree}
+                  </h4>
+                  <p className="text-gray-300 mb-2">{item.college}</p>
+                  <p className="text-gray-400 text-sm">{item.year}</p>
                 </div>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          </div>
+
+          {/* Certifications Section */}
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-white">Certifications</h3>
+            </div>
+            <div className="space-y-6">
+              {certifications.map((cert, index) => (
+                <div
+                  key={index}
+                  className="group bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-blue-500/20 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40"
+                >
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                      <h4 className="text-lg font-semibold text-blue-300 group-hover:text-blue-200 transition-colors duration-300 mb-2">
+                        {cert.title}
+                      </h4>
+                      <p className="text-gray-300 text-sm">
+                        {cert.platform} • {cert.year}
+                      </p>
+                    </div>
+                    {cert.link && (
+                      <a
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-teal-600/20 border border-blue-500/30 rounded-xl text-blue-300 hover:bg-gradient-to-r hover:from-blue-600/40 hover:to-teal-600/40 transition-all duration-300 text-sm font-medium"
+                      >
+                        View Certificate →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Additional info */}
+        <div className="mt-16 text-center">
+          <div className="bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8">
+            <h3 className="text-xl font-semibold text-white mb-4">Continuous Learning</h3>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              I believe in lifelong learning and constantly update my skills through online courses, 
+              workshops, and hands-on projects to stay current with the latest technologies.
+            </p>
+          </div>
         </div>
       </div>
     </section>

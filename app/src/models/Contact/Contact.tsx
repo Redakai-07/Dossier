@@ -1,50 +1,3 @@
-// const Contact = () => {
-//   return (
-//     <section id="contact" className="bg-gray-950 text-white py-16 px-4 md:px-12">
-//       <div className="max-w-3xl mx-auto text-center">
-//         <h2 className="text-4xl font-bold text-orange-400 mb-8">Contact Me</h2>
-//         <p className="text-gray-300 mb-10">
-//           Got a question, proposal, or just want to say hi? Fill out the form below or drop me an email.
-//         </p>
-
-//         <form
-//           className="flex flex-col gap-6 text-left"
-//           onSubmit={(e) => {
-//             e.preventDefault();
-//             alert("Form submitted (hook up EmailJS to make it work!)");
-//           }}
-//         >
-//           <input
-//             type="text"
-//             placeholder="Your Name"
-//             required
-//             className="px-4 py-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-//           />
-//           <input
-//             type="email"
-//             placeholder="Your Email"
-//             required
-//             className="px-4 py-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-//           />
-//           <textarea
-//             rows={5}
-//             placeholder="Your Message"
-//             required
-//             className="px-4 py-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500"
-//           />
-//           <button
-//             type="submit"
-//             className="px-6 py-3 bg-orange-600 hover:bg-orange-700 rounded text-white font-medium"
-//           >
-//             Send Message
-//           </button>
-//         </form>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Contact;
 import { useRef, useState  } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
@@ -96,57 +49,110 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="bg-gray-950 text-white py-16 px-4 md:px-12">
-      <Toaster position="top-right" />
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-orange-400 mb-8">Contact Me</h2>
-        <p className="text-gray-300 mb-10">
-          Got a question, proposal, or just want to say hi? Fill out the form below!
-        </p>
+    <section id="contact" className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+      </div>
 
-        <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-6 text-left">
-          <input
-            type="text"
-            name="from_name"
-            placeholder="Your Name"
-            required
-            className="px-4 py-3 rounded bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-orange-500"
-          />
-          <input
-            type="email"
-            name="from_email"
-            placeholder="Your Email"
-            required
-            className="px-4 py-3 rounded bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-orange-500"
-          />
-          <textarea
-            name="message"
-            rows={5}
-            placeholder="Your Message"
-            required
-            className="px-4 py-3 rounded bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-orange-500"
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className={`px-6 py-3 rounded text-white font-medium ${loading
-                ? "bg-gray-600 cursor-not-allowed"
-                : "bg-orange-600 hover:bg-orange-700"
+      <Toaster position="top-right" />
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-6">
+            Get In Touch
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Got a question, proposal, or just want to say hi? Fill out the form below and I'll get back to you!
+          </p>
+        </div>
+
+        <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl">
+          <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-6 text-left">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                name="from_name"
+                placeholder="Your Name"
+                required
+                className="px-6 py-4 rounded-xl bg-slate-700/50 text-white border border-blue-500/30 focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+              />
+              <input
+                type="email"
+                name="from_email"
+                placeholder="Your Email"
+                required
+                className="px-6 py-4 rounded-xl bg-slate-700/50 text-white border border-blue-500/30 focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+              />
+            </div>
+            <textarea
+              name="message"
+              rows={6}
+              placeholder="Your Message"
+              required
+              className="px-6 py-4 rounded-xl bg-slate-700/50 text-white border border-blue-500/30 focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400 resize-none"
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className={`px-8 py-4 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-105 ${
+                loading
+                  ? "bg-slate-600 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg hover:shadow-xl"
               }`}
-          >
-            {loading ? <span className="flex items-center gap-2">
-              <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                />
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-3">
+                  <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                    />
+                  </svg>
+                  Sending...
+                </span>
+              ) : (
+                "Send Message"
+              )}
+            </button>
+          </form>
+        </div>
+
+        {/* Contact info */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              Sending...
-            </span> : "Send Message"}
-          </button>
-        </form>
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
+            <p className="text-gray-300">your.email@example.com</p>
+          </div>
+          
+          <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
+            <p className="text-gray-300">Bangalore, India</p>
+          </div>
+          
+          <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mb-4">
+              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-white mb-2">Response Time</h3>
+            <p className="text-gray-300">Within 24 hours</p>
+          </div>
+        </div>
       </div>
     </section>
   );
