@@ -79,7 +79,7 @@ const Hero = () => {
             />
             <SplitText
               text="Prabhatha Kana"
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text"
               delay={300}
               duration={0.5}
               ease="power3.out"
@@ -119,6 +119,7 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-blue-500/20"
+              style={{ color: "#fff" }}
             >
               Download Resume
             </a>

@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 const public_key = import.meta.env.VITE_PUBLIC_KEY;
 const service_id = import.meta.env.VITE_SERVICE_ID;
 const template_id = import.meta.env.VITE_TEMPLATE_ID;
+const mail_id = import.meta.env.VITE_EMAIL;
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -129,7 +130,7 @@ const Contact = () => {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
-            <p className="text-gray-300">your.email@example.com</p>
+            <p className="text-gray-300">{mail_id}</p>
           </div>
           
           <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
