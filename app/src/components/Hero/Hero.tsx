@@ -31,7 +31,7 @@ const itemVariants = {
 
 const Hero = () => {
   return (
-    <motion.section
+    <motion.section id="hero"
       className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white overflow-hidden"
       initial="hidden"
       animate="visible"
@@ -118,7 +118,7 @@ const Hero = () => {
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-blue-500/20"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-blue-500/20"
               style={{ color: "#fff" }}
             >
               Download Resume
@@ -139,12 +139,12 @@ const Hero = () => {
             transition={{ delay: 0.8, duration: 0.6 }}
           >
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-400">50+</div>
-              <div className="text-sm text-gray-400">Projects</div>
+              <div className="text-2xl font-bold text-teal-400">1+</div>
+              <div className="text-sm text-gray-400">Years</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-teal-400">3+</div>
-              <div className="text-sm text-gray-400">Years</div>
+              <div className="text-2xl font-bold text-blue-400">10+</div>
+              <div className="text-sm text-gray-400">Projects</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-indigo-400">100%</div>

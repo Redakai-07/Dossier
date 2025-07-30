@@ -81,10 +81,10 @@ const AboutMe = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           
           {/* Profile Section */}
-          <div className="lg:col-span-1 flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
@@ -104,11 +104,11 @@ const AboutMe = () => {
               <p className="text-blue-300 font-medium mb-4">Full-Stack Developer</p>
               <div className="flex justify-center space-x-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-400">3+</div>
+                  <div className="text-2xl font-bold text-blue-400">1+</div>
                   <div className="text-sm text-gray-400">Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-teal-400">50+</div>
+                  <div className="text-2xl font-bold text-teal-400">10+</div>
                   <div className="text-sm text-gray-400">Projects</div>
                 </div>
                 <div className="text-center">
@@ -120,7 +120,7 @@ const AboutMe = () => {
           </div>
 
           {/* About Text */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -163,6 +163,92 @@ const AboutMe = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+
+        {/* Personal Information Section - Simple & Cool */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-2">
+                Personal Information
+              </h3>
+              <p className="text-gray-400">Get to know me better</p>
+            </div>
+            
+            <div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Location */}
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
+                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                    <i className="fas fa-map-marker-alt text-blue-400"></i>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Location</p>
+                    <p className="text-white font-medium">India, Karnataka</p>
+                  </div>
+                </div>
+
+                {/* Languages */}
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
+                  <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
+                    <i className="fas fa-language text-teal-400"></i>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Languages</p>
+                    <p className="text-grey-200 font-medium">English, Kannada, Hindi</p>
+                  </div>
+                </div>
+
+                {/* Timezone */}
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
+                  <div className="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center">
+                    <i className="fas fa-clock text-indigo-400"></i>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Timezone</p>
+                    <p className="text-white font-medium">⏰ IST (UTC+5:30)</p>
+                  </div>
+                </div>
+
+                {/* Work Preference */}
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
+                  <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                    <i className="fas fa-briefcase text-purple-400"></i>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Work Preference</p>
+                    <p className="text-white font-medium">🌍 Remote & Hybrid</p>
+                  </div>
+                </div>
+
+                {/* Education */}
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
+                  <div className="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
+                    <i className="fas fa-graduation-cap text-cyan-400"></i>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Education</p>
+                    <p className="text-white font-medium">🎓 B.E. Computer Science</p>
+                  </div>
+                </div>
+
+                {/* Experience */}
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
+                  <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                    <i className="fas fa-code text-orange-400"></i>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-400">Experience</p>
+                    <p className="text-white font-medium">💼 1+ Years</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* What I Love Section - Completely Redesigned */}

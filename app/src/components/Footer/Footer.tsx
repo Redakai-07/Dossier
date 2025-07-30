@@ -24,7 +24,7 @@ const Footer = () => {
             </div>
             <div>
               <h3 className="text-lg font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent">
-                Venkatesh Kana
+                Venkatesh Prabhatha Kana
               </h3>
               <p className="text-xs text-gray-500">Full-Stack Developer</p>
             </div>
@@ -33,11 +33,9 @@ const Footer = () => {
           {/* Quick Links - Horizontal */}
           <div className="flex items-center space-x-8">
             {[
-              { href: "#home", label: "Home" },
-              { href: "#about", label: "About" },
+              { href: "#hero", label: "Home" },
               { href: "#skills", label: "Skills" },
               { href: "#projects", label: "Projects" },
-              { href: "#contact", label: "Contact" }
             ].map((link) => (
               <a 
                 key={link.href}
@@ -82,7 +80,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-blue-500/20 pt-6">
+        <div>
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-sm text-gray-400">
@@ -96,9 +94,13 @@ const Footer = () => {
                 <span className="text-xs text-gray-500">Available for hire</span>
               </div>
               <div className="flex items-center space-x-2">
+                <i className="fas fa-globe text-blue-400"></i>
+                <span className="text-xs text-gray-500"> India | Remote</span>
+              </div>
+              {/* <div className="flex items-center space-x-2">
                 <i className="devicon-react-original text-blue-400"></i>
                 <span className="text-xs text-gray-500">Built with React</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
