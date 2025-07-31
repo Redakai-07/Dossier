@@ -1,27 +1,36 @@
+const gihub = import.meta.env.VITE_GITHUB;
+const empGithub = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM;
+const taskGithub = import.meta.env.VITE_TASK_FLOW_NAVIGATOR;
+const formGithub = import.meta.env.VITE_FORM_VALIDATION;
+
+const empDemo = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM_LIVE;
+const taskDemo = import.meta.env.VITE_TASK_FLOW_NAVIGATOR_LIVE;
+const formDemo = import.meta.env.VITE_FORM_VALIDATION_LIVE;
+
 const projects = [
   {
-    title: "Deepfake Detection System",
-    description:
-      "A Django-based web app that detects AI-generated videos using a frame-based classification model.",
-    github: "https://github.com/yourusername/deepfake-detection",
-    demo: "https://deepfake-demo.vercel.app/",
-    tech: ["Python", "Django", "React", "TensorFlow"],
+    title: "Employee Management System",
+    description: "Full-stack web application with secure role-based access control and JWT authentication.",
+    tooltip: "A comprehensive full-stack web application featuring secure role-based access control and JWT authentication. Built with React.js frontend and NestJS backend, it provides a complete solution for managing employee data with multi-level user hierarchy, RESTful APIs, and MySQL database integration for efficient CRUD operations. Includes employee registration, editing, deletion, and role-based permissions with Ant Design UI components.",
+    github: empGithub,
+    demo: empDemo,
+    tech: ["React", "NestJS", "MySQL", "JWT", "Ant Design", "TypeScript"],
   },
   {
-    title: "Password Vault",
-    description:
-      "A React.js web app to securely store and manage passwords in local storage with CRUD operations.",
-    github: "https://github.com/yourusername/password-vault",
-    demo: "https://passwordvault.vercel.app/",
-    tech: ["React", "JavaScript", "LocalStorage", "CSS"],
+    title: "Task Flow Navigator",
+    description: "Multi-functional web application with Ant Design Steps component and secure authentication flow.",
+    tooltip: "A comprehensive multi-functional web application built with React and Ant Design Steps component. Features include secure login system with form validation, mobile number OTP verification for two-factor authentication, pagination logic for dynamic card display, and a fully functional To-Do List with add, edit, delete, and complete task features using component state management. Each step handles distinct tasks with user feedback mechanisms and improved UI performance.",
+    github: taskGithub,
+    demo: taskDemo,
+    tech: ["React", "Ant Design", "JavaScript", "CSS", "State Management"],
   },
   {
-    title: "Vendor Registration Portal",
-    description:
-      "An Ant Design-powered React app with country-state-city selectors, modals, and validation.",
-    github: "https://github.com/yourusername/vendor-form",
-    demo: "https://vendor-form-demo.netlify.app/",
-    tech: ["React", "Ant Design", "Redux", "Form Validation"],
+    title: "Form Validation",
+    description: "Company registration web application with pattern recognition and field validation for business details.",
+    tooltip: "A comprehensive company registration web application built with React and Ant Design. Features include form validation for business-specific fields like PAN, TAN, and GST numbers with pattern recognition to verify data accuracy. Implements country-state cascading selectors, real-time validation feedback, and responsive design. Uses advanced form handling with pattern matching algorithms to ensure entered business details are correct and compliant with regulatory standards.",
+    github: formGithub,
+    demo: formDemo,
+    tech: ["React", "Ant Design", "JavaScript", "Pattern Recognition", "Form Validation"],
   },
 ];
 
@@ -51,9 +60,22 @@ const Projects = () => {
               className="group bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 p-6 flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300 mb-3">
-                  {project.title}
-                </h3>
+                <div className="flex items-center gap-2 mb-3">
+                  <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  {project.tooltip && (
+                    <div className="relative group/info">
+                      <svg className="w-5 h-5 text-blue-400 hover:text-blue-300 cursor-help transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-8 py-6 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover/info:opacity-100 transition-opacity duration-300 pointer-events-none z-10 max-w-4xl text-left shadow-lg border border-blue-500/20">
+                        {project.tooltip}
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-900"></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                   {project.description}
                 </p>
@@ -68,24 +90,36 @@ const Projects = () => {
                   ))}
                 </div>
               </div>
-              <div className="flex gap-3 mt-auto">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 hover:text-white!important transition-all duration-300 text-sm font-medium text-center hover:scale-105"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 px-4 py-2 rounded-xl bg-transparent border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300 text-sm font-medium text-center hover:scale-105"
-                >
-                  Live Demo
-                </a>
-              </div>
+                             <div className="flex gap-3 mt-auto">
+                 <a
+                   href={project.github}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   onClick={(e) => {
+                     if (!project.github || project.github === '#') {
+                       e.preventDefault();
+                       alert('GitHub link not available yet!');
+                     }
+                   }}
+                   className="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 hover:text-white!important transition-all duration-300 text-sm font-medium text-center hover:scale-105"
+                 >
+                   GitHub
+                 </a>
+                 <a
+                   href={project.demo}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   onClick={(e) => {
+                     if (!project.demo || project.demo === '#') {
+                       e.preventDefault();
+                       alert('Live demo not available yet!');
+                     }
+                   }}
+                   className="flex-1 px-4 py-2 rounded-xl bg-transparent border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300 text-sm font-medium text-center hover:scale-105"
+                 >
+                   Live Demo
+                 </a>
+               </div>
             </div>
           ))}
         </div>

@@ -166,7 +166,7 @@ const AboutMe = () => {
         </div>
 
         {/* Personal Information Section - Simple & Cool */}
-        <div className="mb-20">
+        <div id="personal-info" className="mb-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -291,7 +291,7 @@ const AboutMe = () => {
         </div>
 
         {/* Timeline - Completely Redesigned */}
-        <div>
+        <div id="journey">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
               My Journey

@@ -1,9 +1,45 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 const linkedIn = import.meta.env.VITE_LINKEDIN;
 const gitHub = import.meta.env.VITE_GITHUB;
-const mail_id = import.meta.env.VITE_EMAIL;
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+  // Define quick links for each page
+  const getQuickLinks = () => {
+    switch (location.pathname) {
+      case "/":
+        return [
+          { href: "#hero", label: "Home" },
+          { href: "#skills", label: "Skills" },
+          { href: "#projects", label: "Projects" },
+        ];
+      case "/education":
+        return [
+          { href: "#education", label: "Education" },
+        ];
+      case "/about":
+        return [
+          { href: "#about", label: "About Me" },
+          { href: "#personal-info", label: "Personal Info" },
+          { href: "#journey", label: "Journey" },
+        ];
+      case "/contact":
+        return [
+          { href: "#contact", label: "Contact Me" },
+        ];
+      default:
+        return [
+          { href: "#hero", label: "Home" },
+          { href: "#skills", label: "Skills" },
+          { href: "#projects", label: "Projects" },
+        ];
+    }
+  };
+
+  const quickLinks = getQuickLinks();
 
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-gray-300 py-12 px-6 border-t border-blue-500/20">
@@ -32,15 +68,11 @@ const Footer = () => {
 
           {/* Quick Links - Horizontal */}
           <div className="flex items-center space-x-8">
-            {[
-              { href: "#hero", label: "Home" },
-              { href: "#skills", label: "Skills" },
-              { href: "#projects", label: "Projects" },
-            ].map((link) => (
+            {quickLinks.map((link) => (
               <a 
                 key={link.href}
                 href={link.href} 
-                className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm font-medium"
+                className="text-gray-400 hover:text-blue-400! transition-colors duration-300 text-sm font-medium"
               >
                 {link.label}
               </a>
@@ -68,7 +100,7 @@ const Footer = () => {
               <i className="devicon-linkedin-plain text-lg"></i>
             </a>
             <a
-              href={`mailto:${mail_id}`}
+              onClick={() => navigate("/contact")}
               className="p-2 bg-slate-800/50 hover:bg-blue-600/20 border border-blue-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:border-blue-400/40"
               aria-label="Email"
             >

@@ -4,7 +4,7 @@ import Home from './models/Home/Home'
 import Education from './components/Education/Education';
 import AboutMe from './models/AboutMe/AboutMe';
 import Contact from './models/Contact/Contact';
-import Error from './models/PageNotFound/PageNotFound';
+import PageNotFound from './models/PageNotFound/PageNotFound';
 import Layout from './components/Layout/Layout';
 // function App() {
 
@@ -34,7 +34,7 @@ import Layout from './components/Layout/Layout';
           <Route path="education" element={<Education />} />
           <Route path="about" element={<AboutMe />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="error" element={<Error />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </Router>

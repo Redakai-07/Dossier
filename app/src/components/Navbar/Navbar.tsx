@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 const NAV_ITEMS = [
   { label: "Home", path: "/" },
@@ -56,12 +57,12 @@ const Navbar = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo or Brand */}
         <div className="group">
-          <h1
-            className="bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent font-extrabold text-2xl md:text-3xl cursor-pointer select-none hover:scale-105 transition-all duration-300"
+          <img
+            src={logo}
+            alt="VPK Logo"
+            className="h-8 md:h-10 cursor-pointer select-none hover:scale-105 transition-all duration-300 drop-shadow-lg hover:drop-shadow-xl filter brightness-100 hover:brightness-110"
             onClick={() => navigate("/")}
-          >
-            VPK
-          </h1>
+          />
           <div className="h-0.5 bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
         </div>
 

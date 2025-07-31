@@ -4,6 +4,16 @@ import 'aos/dist/aos.css';
 
 // Skill categories for better organization
 const skillCategories = {
+  languages: {
+    title: "Languages",
+    description: "Programming languages and frameworks",
+    skills: [
+      { name: 'Python', icon: 'devicon-python-plain colored' },
+      { name: 'C', icon: 'devicon-c-plain colored' },
+      { name: 'C++', icon: 'devicon-cplusplus-plain colored' },
+      { name: 'Java', icon: 'devicon-java-plain colored' },
+    ]
+  },
   frontend: {
     title: "Frontend Development",
     description: "Modern UI/UX technologies and frameworks",
@@ -21,10 +31,9 @@ const skillCategories = {
     description: "Server-side technologies and databases",
     skills: [
       { name: 'Node.js', icon: 'devicon-nodejs-plain colored' },
-      { name: 'Express.js', icon: 'devicon-express-original colored' },
-      { name: 'MongoDB', icon: 'devicon-mongodb-plain colored' },
-      { name: 'PostgreSQL', icon: 'devicon-postgresql-plain colored' },
+      { name: 'Nest.js', icon: 'devicon-nestjs-plain colored' },
       { name: 'Django', icon: 'devicon-django-plain colored' },
+      { name: 'MySQL', icon: 'devicon-mysql-plain colored' },
     ]
   },
   tools: {
@@ -32,12 +41,12 @@ const skillCategories = {
     description: "Version control, deployment, and collaboration tools",
     skills: [
       { name: 'Git & GitHub', icon: 'devicon-git-plain colored' },
-      { name: 'Docker', icon: 'devicon-docker-plain colored' },
-      { name: 'AWS', icon: 'devicon-amazonwebservices-original colored' },
+      { name: 'VS Code', icon: 'devicon-vscode-plain colored' },
       { name: 'Figma', icon: 'devicon-figma-plain colored' },
       { name: 'Postman', icon: 'devicon-postman-plain colored' },
+      { name: 'Firebase', icon: 'devicon-firebase-plain colored' },
     ]
-  }
+  },
 };
 
 const Skills = () => {
@@ -69,7 +78,7 @@ const Skills = () => {
         {/* Skills Categories */}
         <div className="space-y-16">
           {Object.entries(skillCategories).map(([categoryKey, category], categoryIndex) => (
-            <div key={categoryKey} className="space-y-8" data-aos="fade-up" data-aos-delay={categoryIndex * 200}>
+            <div key={categoryKey} className="space-y-8" data-aos="fade-up" data-aos-delay={categoryIndex * 25}>
               {/* Category Header */}
               <div className="text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
@@ -80,24 +89,24 @@ const Skills = () => {
                 </p>
               </div>
 
-              {/* Skills Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+              {/* Skills Flex Container */}
+              <div className="flex flex-wrap justify-center items-center gap-6">
                 {category.skills.map((skill, skillIndex) => (
                   <div
                     key={skill.name}
-                    className="group relative bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 hover:bg-slate-800/50 text-center"
+                    className="group relative bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 hover:bg-slate-800/50 text-center w-32 h-32 flex flex-col items-center justify-center"
                     data-aos="zoom-in"
                     data-aos-delay={skillIndex * 100}
                   >
                     {/* Skill Icon */}
-                    <div className="flex justify-center mb-4">
-                      <div className="p-4 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl group-hover:from-blue-500/30 group-hover:to-teal-500/30 transition-all duration-300">
-                        <i className={`${skill.icon} text-3xl`} />
+                    <div className="flex justify-center items-center mb-3">
+                      <div className="p-3 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl group-hover:from-blue-500/30 group-hover:to-teal-500/30 transition-all duration-300 flex justify-center items-center w-12 h-12">
+                        <i className={`${skill.icon} text-2xl`} />
                       </div>
                     </div>
 
                     {/* Skill Name */}
-                    <h4 className="text-sm font-semibold text-white group-hover:text-blue-300 transition-colors duration-300">
+                    <h4 className="text-xs font-semibold text-white group-hover:text-blue-300 transition-colors duration-300 text-center">
                       {skill.name}
                     </h4>
 
@@ -120,8 +129,8 @@ const Skills = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              'Redux', 'Next.js', 'GraphQL', 'Firebase', 'Jest', 'Webpack', 
-              'Vite', 'Sass', 'Bootstrap', 'Material-UI', 'Three.js', 'Socket.io'
+              'Redux','Axios', 'Vite', 'Sass', 'Bootstrap', 'Material-UI', 'CI/CD', 'DevOps', 'Agile', 'Scrum',
+              'RESTful APIs',
             ].map((tech, index) => (
               <span
                 key={index}
