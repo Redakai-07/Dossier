@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import { useTheme } from "../../contexts/ThemeContext";
+import darkLogo from "../../assets/dark.png";
+import lightLogo from "../../assets/light.png";
 
 const NAV_ITEMS = [
   { label: "Home", path: "/" },
@@ -14,6 +16,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const mobileMenuRef = useRef<HTMLUListElement>(null);
+  const { theme, toggleTheme } = useTheme();
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -40,11 +43,15 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-500 theme-transition ${
         scrolled 
           ? "bg-gradient-to-br from-gray-900/95 via-slate-900/95 to-gray-900/95 shadow-2xl border-b border-blue-500/30" 
           : "bg-gradient-to-br from-gray-900/80 via-slate-900/80 to-gray-900/80"
       }`}
+      style={{
+        background: scrolled ? 'var(--bg-navbar-scrolled)' : 'var(--bg-navbar)',
+        borderBottom: scrolled ? '1px solid var(--border-primary)' : 'none'
+      }}
     >
       {/* Background decorative elements for scrolled state */}
       {scrolled && (
@@ -58,7 +65,7 @@ const Navbar = () => {
         {/* Logo or Brand */}
         <div className="group">
           <img
-            src={logo}
+            src={theme === 'dark' ? darkLogo : lightLogo}
             alt="VPK Logo"
             className="h-8 md:h-10 cursor-pointer select-none hover:scale-105 transition-all duration-300 drop-shadow-lg hover:drop-shadow-xl filter brightness-100 hover:brightness-110"
             onClick={() => navigate("/")}
@@ -67,7 +74,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-12 text-white font-semibold tracking-wide" role="menubar">
+        <ul className="hidden md:flex gap-12 text-white font-semibold tracking-wide items-center" role="menubar">
           {NAV_ITEMS.map((item) => (
             <li
               key={item.path}
@@ -78,16 +85,49 @@ const Navbar = () => {
               onKeyDown={e => {
                 if (e.key === "Enter" || e.key === " ") handleNavigate(item.path);
               }}
+              style={{ color: 'var(--text-primary)' }}
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 transition-all duration-300 group-hover:w-full rounded-full"></span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-teal-400 to-indigo-400 transition-all duration-300 group-hover:w-full rounded-full delay-75"></span>
             </li>
           ))}
+          
+          {/* Theme Toggle Button */}
+          <li className="ml-4">
+            <button
+              onClick={toggleTheme}
+              className="theme-toggle"
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              <svg className="sun-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+              </svg>
+              <svg className="moon-icon" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+              </svg>
+            </button>
+          </li>
         </ul>
 
         {/* Mobile Menu Icon */}
-        <div className="md:hidden relative">
+        <div className="md:hidden relative flex items-center gap-4">
+          {/* Theme Toggle Button for Mobile */}
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            <svg className="sun-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+            </svg>
+            <svg className="moon-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+            </svg>
+          </button>
+
           <button
             type="button"
             aria-label="Toggle menu"
@@ -99,6 +139,10 @@ const Navbar = () => {
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-controls="mobile-menu"
+            style={{ 
+              color: 'var(--text-primary)',
+              backgroundColor: open ? 'var(--bg-tertiary)' : 'transparent'
+            }}
           >
             <svg
               className="w-6 h-6 transition-transform duration-300"
@@ -117,9 +161,16 @@ const Navbar = () => {
 
           {/* Mobile Dropdown */}
           {open && (
-            <div className="absolute right-0 mt-3 w-56 bg-slate-900/95 backdrop-blur-md border border-blue-500/20 rounded-2xl shadow-2xl py-4 z-50 animate-fadeIn">
-              <div className="px-4 py-2 mb-2 border-b border-blue-500/20">
-                <p className="text-xs text-blue-300 font-medium">Navigation</p>
+            <div 
+              className="absolute right-0 mt-3 w-56 backdrop-blur-md border rounded-2xl shadow-2xl py-4 z-50 animate-fadeIn"
+              style={{
+                backgroundColor: 'var(--bg-secondary)',
+                borderColor: 'var(--border-secondary)',
+                boxShadow: '0 10px 25px var(--shadow-primary)'
+              }}
+            >
+              <div className="px-4 py-2 mb-2 border-b" style={{ borderColor: 'var(--border-secondary)' }}>
+                <p className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>Navigation</p>
               </div>
               <ul
                 id="mobile-menu"
@@ -130,12 +181,16 @@ const Navbar = () => {
                 {NAV_ITEMS.map((item) => (
                   <li
                     key={item.path}
-                    className="px-4 py-3 text-base text-white hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-teal-600/20 hover:text-blue-300 cursor-pointer transition-all duration-300 mx-2 rounded-xl group"
+                    className="px-4 py-3 text-base hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-teal-600/20 hover:text-blue-300 cursor-pointer transition-all duration-300 mx-2 rounded-xl group"
                     onClick={() => handleNavigate(item.path)}
                     role="menuitem"
                     tabIndex={0}
                     onKeyDown={e => {
                       if (e.key === "Enter" || e.key === " ") handleNavigate(item.path);
+                    }}
+                    style={{ 
+                      color: 'var(--text-primary)',
+                      backgroundColor: 'transparent'
                     }}
                   >
                     <div className="flex items-center gap-3">

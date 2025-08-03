@@ -42,7 +42,14 @@ const Footer = () => {
   const quickLinks = getQuickLinks();
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-gray-300 py-12 px-6 border-t border-blue-500/20">
+    <footer 
+      className="relative py-12 px-6 border-t theme-transition"
+      style={{
+        background: 'var(--bg-secondary)',
+        color: 'var(--text-secondary)',
+        borderColor: 'var(--border-secondary)'
+      }}
+    >
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute bottom-8 left-10 w-32 h-32 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
@@ -55,14 +62,21 @@ const Footer = () => {
           
           {/* Brand Section */}
           <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 border border-white rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-lg">V</span>
+            <div 
+              className="w-10 h-10 border rounded-full flex items-center justify-center shadow-lg"
+              style={{
+                background: 'var(--bg-tertiary)',
+                borderColor: 'var(--border-primary)',
+                color: 'var(--text-primary)'
+              }}
+            >
+              <span className="font-bold text-lg">V</span>
             </div>
             <div>
               <h3 className="text-lg font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent">
                 Venkatesh Prabhatha Kana
               </h3>
-              <p className="text-xs text-gray-500">Full-Stack Developer</p>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Full-Stack Developer</p>
             </div>
           </div>
 
@@ -72,7 +86,8 @@ const Footer = () => {
               <a 
                 key={link.href}
                 href={link.href} 
-                className="text-gray-400 hover:text-blue-400! transition-colors duration-300 text-sm font-medium"
+                className="transition-colors duration-300 text-sm font-medium hover:text-blue-400"
+                style={{ color: 'var(--text-secondary)' }}
               >
                 {link.label}
               </a>
@@ -85,7 +100,12 @@ const Footer = () => {
               href={gitHub}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-slate-800/50 hover:bg-blue-600/20 border border-blue-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:border-blue-400/40"
+              className="p-2 border rounded-lg transition-all duration-300 hover:scale-110"
+              style={{
+                background: 'var(--bg-tertiary)',
+                borderColor: 'var(--border-secondary)',
+                color: 'var(--text-primary)'
+              }}
               aria-label="GitHub"
             >
               <i className="devicon-github-original text-lg"></i>
@@ -94,14 +114,24 @@ const Footer = () => {
               href={linkedIn}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 bg-slate-800/50 hover:bg-blue-600/20 border border-blue-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:border-blue-400/40"
+              className="p-2 border rounded-lg transition-all duration-300 hover:scale-110"
+              style={{
+                background: 'var(--bg-tertiary)',
+                borderColor: 'var(--border-secondary)',
+                color: 'var(--text-primary)'
+              }}
               aria-label="LinkedIn"
             >
               <i className="devicon-linkedin-plain text-lg"></i>
             </a>
             <a
               onClick={() => navigate("/contact")}
-              className="p-2 bg-slate-800/50 hover:bg-blue-600/20 border border-blue-500/20 rounded-lg transition-all duration-300 hover:scale-110 hover:border-blue-400/40"
+              className="p-2 border rounded-lg transition-all duration-300 hover:scale-110 cursor-pointer"
+              style={{
+                background: 'var(--bg-tertiary)',
+                borderColor: 'var(--border-secondary)',
+                color: 'var(--text-primary)'
+              }}
               aria-label="Email"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +145,7 @@ const Footer = () => {
         <div>
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
-              <p className="text-sm text-gray-400">
+              <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
                 &copy; {currentYear} Venkatesh Prabhatha Kana. All rights reserved.
               </p>
             </div>
@@ -123,11 +153,11 @@ const Footer = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-xs text-gray-500">Available for hire</span>
+                <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Available for hire</span>
               </div>
               <div className="flex items-center space-x-2">
-                <i className="fas fa-globe text-blue-400"></i>
-                <span className="text-xs text-gray-500"> India | Remote</span>
+                <i className="fas fa-globe" style={{ color: 'var(--accent-primary)' }}></i>
+                <span className="text-xs" style={{ color: 'var(--text-muted)' }}> India | Remote</span>
               </div>
               {/* <div className="flex items-center space-x-2">
                 <i className="devicon-react-original text-blue-400"></i>

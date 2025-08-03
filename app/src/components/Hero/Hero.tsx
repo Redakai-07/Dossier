@@ -32,7 +32,11 @@ const itemVariants = {
 const Hero = () => {
   return (
     <motion.section id="hero"
-      className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white overflow-hidden"
+      className="relative min-h-screen w-full text-white overflow-hidden theme-transition"
+      style={{
+        background: 'var(--bg-primary)',
+        color: 'var(--text-primary)'
+      }}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -54,7 +58,8 @@ const Hero = () => {
         >
           {/* Greeting */}
           <motion.div
-            className="text-sm font-medium text-blue-300 tracking-wider uppercase"
+            className="text-sm font-medium tracking-wider uppercase"
+            style={{ color: 'var(--accent-secondary)' }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1, duration: 0.3 }}
@@ -67,6 +72,7 @@ const Hero = () => {
             <SplitText
               text="Venkatesh"
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight"
+              style={{ color: 'var(--text-primary)' }}
               delay={50}
               duration={0.5}
               ease="power3.out"
@@ -94,7 +100,8 @@ const Hero = () => {
 
           {/* Description */}
           <motion.div 
-            className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-lg"
+            className="text-lg sm:text-xl leading-relaxed max-w-lg"
+            style={{ color: 'var(--text-secondary)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.3 }}

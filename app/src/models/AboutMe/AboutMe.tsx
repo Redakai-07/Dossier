@@ -61,7 +61,11 @@ const AboutMe = () => {
   return (
     <section
       id="about"
-      className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden"
+      className="relative text-white py-20 px-6 md:px-16 overflow-hidden theme-transition"
+      style={{
+        background: 'var(--bg-primary)',
+        color: 'var(--text-primary)'
+      }}
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0">
@@ -75,7 +79,7 @@ const AboutMe = () => {
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
             About Me
           </h2>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             A passionate Computer Science graduate crafting digital experiences with modern technologies
           </p>
         </div>
@@ -95,25 +99,26 @@ const AboutMe = () => {
               <img
                 src={profileImg}
                 alt="Venkatesh Prabhatha Kana"
-                className="relative z-10 w-48 h-48 rounded-full object-cover border-4 border-blue-500/30 shadow-2xl"
+                className="relative z-10 w-48 h-48 rounded-full object-cover border-4 shadow-2xl"
+                style={{ borderColor: 'var(--border-primary)' }}
               />
             </motion.div>
             
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-white mb-2">Venkatesh Prabhatha Kana</h3>
-              <p className="text-blue-300 font-medium mb-4">Full-Stack Developer</p>
+              <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>Venkatesh Prabhatha Kana</h3>
+              <p className="font-medium mb-4" style={{ color: 'var(--accent-secondary)' }}>Full-Stack Developer</p>
               <div className="flex justify-center space-x-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-400">1+</div>
-                  <div className="text-sm text-gray-400">Years Experience</div>
+                  <div className="text-2xl font-bold" style={{ color: 'var(--accent-primary)' }}>1+</div>
+                  <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Years Experience</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-teal-400">10+</div>
-                  <div className="text-sm text-gray-400">Projects</div>
+                  <div className="text-2xl font-bold" style={{ color: 'var(--accent-secondary)' }}>10+</div>
+                  <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Projects</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-indigo-400">100%</div>
-                  <div className="text-sm text-gray-400">Dedication</div>
+                  <div className="text-2xl font-bold" style={{ color: 'var(--accent-tertiary)' }}>100%</div>
+                  <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Dedication</div>
                 </div>
               </div>
             </div>
@@ -126,20 +131,20 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-semibold text-white mb-4">My Story</h3>
-              <p className="text-gray-300 leading-relaxed mb-4">
+              <h3 className="text-2xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>My Story</h3>
+              <p className="leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                 I'm a Computer Science graduate passionate about building well-crafted digital experiences. 
-                With hands-on experience at <span className="text-blue-300 font-medium">Inventech</span> and{' '}
-                <span className="text-blue-300 font-medium">Rooman Technologies</span>, I specialize in crafting
+                With hands-on experience at <span className="font-medium" style={{ color: 'var(--accent-secondary)' }}>Inventech</span> and{' '}
+                <span className="font-medium" style={{ color: 'var(--accent-secondary)' }}>Rooman Technologies</span>, I specialize in crafting
                 scalable full-stack applications.
               </p>
-              <p className="text-gray-400 leading-relaxed mb-4">
-                My expertise spans modern technologies including <strong className="text-blue-300">React.js</strong>,{' '}
-                <strong className="text-blue-300">NestJS</strong>, <strong className="text-blue-300">Redux</strong>, and{' '}
-                <strong className="text-blue-300">MySQL</strong>. Whether it's designing smooth UI or architecting clean backend logic — 
+              <p className="leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
+                My expertise spans modern technologies including <strong style={{ color: 'var(--accent-secondary)' }}>React.js</strong>,{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>NestJS</strong>, <strong style={{ color: 'var(--accent-secondary)' }}>Redux</strong>, and{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>MySQL</strong>. Whether it's designing smooth UI or architecting clean backend logic — 
                 I love bringing ideas to life and pushing projects across the finish line.
               </p>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                 I'm always exploring new technologies and best practices to stay at the forefront of web development.
               </p>
             </motion.div>
@@ -150,12 +155,17 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h4 className="text-lg font-semibold text-white mb-3">Tech Stack</h4>
+              <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>Tech Stack</h4>
               <div className="flex flex-wrap gap-2">
                 {['React.js', 'Node.js', 'TypeScript', 'NestJS', 'MySQL', 'Redux', 'Tailwind CSS', 'Git'].map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 bg-gradient-to-r from-blue-600/20 to-teal-600/20 border border-blue-500/30 rounded-full text-blue-300 text-sm"
+                    className="px-3 py-1 border rounded-full text-sm"
+                    style={{
+                      background: 'var(--bg-tertiary)',
+                      borderColor: 'var(--border-primary)',
+                      color: 'var(--accent-primary)'
+                    }}
                   >
                     {skill}
                   </span>
@@ -176,74 +186,74 @@ const AboutMe = () => {
               <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-2">
                 Personal Information
               </h3>
-              <p className="text-gray-400">Get to know me better</p>
+              <p style={{ color: 'var(--text-muted)' }}>Get to know me better</p>
             </div>
             
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Location */}
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-map-marker-alt text-blue-400"></i>
+                <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                    <i className="fas fa-map-marker-alt" style={{ color: 'var(--accent-primary)' }}></i>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Location</p>
-                    <p className="text-white font-medium">India, Karnataka</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Location</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>India, Karnataka</p>
                   </div>
                 </div>
 
                 {/* Languages */}
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                  <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-language text-teal-400"></i>
+                <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                    <i className="fas fa-language" style={{ color: 'var(--accent-secondary)' }}></i>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Languages</p>
-                    <p className="text-grey-200 font-medium">English, Kannada, Hindi</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Languages</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>English, Kannada, Hindi</p>
                   </div>
                 </div>
 
                 {/* Timezone */}
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                  <div className="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-clock text-indigo-400"></i>
+                <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                    <i className="fas fa-clock" style={{ color: 'var(--accent-tertiary)' }}></i>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Timezone</p>
-                    <p className="text-white font-medium">⏰ IST (UTC+5:30)</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Timezone</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>⏰ IST (UTC+5:30)</p>
                   </div>
                 </div>
 
                 {/* Work Preference */}
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-briefcase text-purple-400"></i>
+                <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                    <i className="fas fa-briefcase" style={{ color: 'var(--accent-primary)' }}></i>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Work Preference</p>
-                    <p className="text-white font-medium">🌍 Remote & Hybrid</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Work Preference</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>🌍 Remote & Hybrid</p>
                   </div>
                 </div>
 
                 {/* Education */}
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                  <div className="w-10 h-10 bg-cyan-500/20 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-graduation-cap text-cyan-400"></i>
+                <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                    <i className="fas fa-graduation-cap" style={{ color: 'var(--accent-secondary)' }}></i>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Education</p>
-                    <p className="text-white font-medium">🎓 B.E. Computer Science</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Education</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>🎓 B.E. Computer Science</p>
                   </div>
                 </div>
 
                 {/* Experience */}
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300">
-                  <div className="w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
-                    <i className="fas fa-code text-orange-400"></i>
+                <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+                    <i className="fas fa-code" style={{ color: 'var(--accent-tertiary)' }}></i>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Experience</p>
-                    <p className="text-white font-medium">💼 1+ Years</p>
+                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Experience</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>💼 1+ Years</p>
                   </div>
                 </div>
               </div>
@@ -257,7 +267,7 @@ const AboutMe = () => {
             <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
               What Drives Me
             </h3>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
               Beyond the code, these are the things that make me excited to be a developer every day.
             </p>
           </div>
@@ -271,16 +281,19 @@ const AboutMe = () => {
                 transition={{ delay: i * 0.1, duration: 0.6 }}
                 className="group relative"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-teal-500/5 rounded-2xl group-hover:from-blue-500/10 group-hover:to-teal-500/10 transition-all duration-300"></div>
-                <div className="relative bg-slate-800/40 backdrop-blur-sm p-6 rounded-2xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 h-full">
+                <div className="absolute inset-0 rounded-2xl group-hover:from-blue-500/10 group-hover:to-teal-500/10 transition-all duration-300" style={{ background: 'var(--bg-tertiary)' }}></div>
+                <div className="relative backdrop-blur-sm p-6 rounded-2xl border hover:border-blue-400/40 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 h-full" style={{
+                  background: 'var(--bg-secondary)',
+                  borderColor: 'var(--border-secondary)'
+                }}>
                   <div className="flex flex-col h-full">
                     <div className={`text-3xl bg-gradient-to-br ${passion.color} p-3 rounded-xl w-fit mb-4`}>
                       {passion.icon}
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
+                    <h4 className="text-lg font-bold mb-3 group-hover:text-blue-300 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                       {passion.title}
                     </h4>
-                    <p className="text-gray-400 text-sm leading-relaxed flex-1">
+                    <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--text-secondary)' }}>
                       {passion.description}
                     </p>
                   </div>
@@ -296,7 +309,7 @@ const AboutMe = () => {
             <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
               My Journey
             </h3>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
               A timeline of my professional growth and achievements in the tech world.
             </p>
           </div>
@@ -317,16 +330,19 @@ const AboutMe = () => {
                   className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
                 >
                   {/* Timeline Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full border-4 border-gray-900 shadow-lg z-10"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full border-4 shadow-lg z-10" style={{ borderColor: 'var(--bg-primary)' }}></div>
                   
                   {/* Content Card */}
                   <div className={`w-5/12 ${index % 2 === 0 ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
-                    <div className="bg-slate-800/40 backdrop-blur-sm p-6 rounded-xl border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+                    <div className="backdrop-blur-sm p-6 rounded-xl border hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10" style={{
+                      background: 'var(--bg-secondary)',
+                      borderColor: 'var(--border-secondary)'
+                    }}>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-2xl font-bold text-blue-400">{item.year}</span>
+                        <span className="text-2xl font-bold" style={{ color: 'var(--accent-primary)' }}>{item.year}</span>
                         <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full"></div>
                       </div>
-                      <p className="text-gray-300 text-lg font-medium">{item.event}</p>
+                      <p className="text-lg font-medium" style={{ color: 'var(--text-secondary)' }}>{item.event}</p>
                     </div>
                   </div>
                 </motion.div>

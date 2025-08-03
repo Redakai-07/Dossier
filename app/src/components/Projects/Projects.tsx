@@ -36,7 +36,14 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+    <section 
+      id="projects" 
+      className="relative text-white py-20 px-6 md:px-16 overflow-hidden theme-transition"
+      style={{
+        background: 'var(--bg-primary)',
+        color: 'var(--text-primary)'
+      }}
+    >
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-40 left-20 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
@@ -48,7 +55,7 @@ const Projects = () => {
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
             Featured Projects
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Explore my latest work showcasing modern web development and innovative solutions
           </p>
         </div>
@@ -57,69 +64,91 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 p-6 flex flex-col justify-between"
+              className="group backdrop-blur-sm border rounded-2xl shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 p-6 flex flex-col justify-between"
+              style={{
+                background: 'var(--bg-secondary)',
+                borderColor: 'var(--border-secondary)',
+                boxShadow: '0 4px 6px var(--shadow-secondary)'
+              }}
             >
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                  <h3 className="text-xl font-bold group-hover:text-blue-300 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                     {project.title}
                   </h3>
                   {project.tooltip && (
                     <div className="relative group/info">
-                      <svg className="w-5 h-5 text-blue-400 hover:text-blue-300 cursor-help transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 hover:text-blue-300 cursor-help transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20" style={{ color: 'var(--accent-primary)' }}>
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                       </svg>
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-8 py-6 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover/info:opacity-100 transition-opacity duration-300 pointer-events-none z-10 max-w-4xl text-left shadow-lg border border-blue-500/20">
+                      <div 
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-8 py-6 text-sm rounded-lg opacity-0 group-hover/info:opacity-100 transition-opacity duration-300 pointer-events-none z-10 max-w-4xl text-left shadow-lg border"
+                        style={{
+                          background: 'var(--bg-tertiary)',
+                          color: 'var(--text-primary)',
+                          borderColor: 'var(--border-primary)',
+                          boxShadow: '0 10px 25px var(--shadow-primary)'
+                        }}
+                      >
                         {project.tooltip}
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-900"></div>
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent" style={{ borderBottomColor: 'var(--bg-tertiary)' }}></div>
                       </div>
                     </div>
                   )}
                 </div>
-                <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+                <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 text-xs bg-gradient-to-r from-blue-600/20 to-teal-600/20 border border-blue-500/30 rounded-full text-blue-300"
+                      className="px-3 py-1 text-xs border rounded-full"
+                      style={{
+                        background: 'var(--bg-tertiary)',
+                        borderColor: 'var(--border-primary)',
+                        color: 'var(--accent-primary)'
+                      }}
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
-                             <div className="flex gap-3 mt-auto">
-                 <a
-                   href={project.github}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   onClick={(e) => {
-                     if (!project.github || project.github === '#') {
-                       e.preventDefault();
-                       alert('GitHub link not available yet!');
-                     }
-                   }}
-                   className="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 hover:text-white!important transition-all duration-300 text-sm font-medium text-center hover:scale-105"
-                 >
-                   GitHub
-                 </a>
-                 <a
-                   href={project.demo}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   onClick={(e) => {
-                     if (!project.demo || project.demo === '#') {
-                       e.preventDefault();
-                       alert('Live demo not available yet!');
-                     }
-                   }}
-                   className="flex-1 px-4 py-2 rounded-xl bg-transparent border border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300 text-sm font-medium text-center hover:scale-105"
-                 >
-                   Live Demo
-                 </a>
-               </div>
+              <div className="flex gap-3 mt-auto">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (!project.github || project.github === '#') {
+                      e.preventDefault();
+                      alert('GitHub link not available yet!');
+                    }
+                  }}
+                  className="flex-1 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 hover:text-white!important transition-all duration-300 text-sm font-medium text-center hover:scale-105"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (!project.demo || project.demo === '#') {
+                      e.preventDefault();
+                      alert('Live demo not available yet!');
+                    }
+                  }}
+                  className="flex-1 px-4 py-2 rounded-xl bg-transparent border text-center transition-all duration-300 text-sm font-medium hover:scale-105"
+                  style={{
+                    borderColor: 'var(--accent-primary)',
+                    color: 'var(--accent-primary)'
+                  }}
+                >
+                  Live Demo
+                </a>
+              </div>
             </div>
           ))}
         </div>

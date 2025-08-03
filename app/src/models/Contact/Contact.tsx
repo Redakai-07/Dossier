@@ -50,7 +50,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white py-20 px-6 md:px-16 overflow-hidden">
+    <section 
+      id="contact" 
+      className="relative text-white py-20 px-6 md:px-16 overflow-hidden theme-transition"
+      style={{
+        background: 'var(--bg-primary)',
+        color: 'var(--text-primary)'
+      }}
+    >
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
@@ -63,12 +70,16 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-6">
             Get In Touch
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
             Got a question, proposal, or just want to say hi? Fill out the form below and I'll get back to you!
           </p>
         </div>
 
-        <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl">
+        <div className="backdrop-blur-sm border rounded-2xl p-8 shadow-xl" style={{
+          background: 'var(--bg-secondary)',
+          borderColor: 'var(--border-secondary)',
+          boxShadow: '0 10px 25px var(--shadow-primary)'
+        }}>
           <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-6 text-left">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input
@@ -76,14 +87,24 @@ const Contact = () => {
                 name="from_name"
                 placeholder="Your Name"
                 required
-                className="px-6 py-4 rounded-xl bg-slate-700/50 text-white border border-blue-500/30 focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+                className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+                style={{
+                  background: 'var(--bg-tertiary)',
+                  borderColor: 'var(--border-secondary)',
+                  color: 'var(--text-primary)'
+                }}
               />
               <input
                 type="email"
                 name="from_email"
                 placeholder="Your Email"
                 required
-                className="px-6 py-4 rounded-xl bg-slate-700/50 text-white border border-blue-500/30 focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+                className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+                style={{
+                  background: 'var(--bg-tertiary)',
+                  borderColor: 'var(--border-secondary)',
+                  color: 'var(--text-primary)'
+                }}
               />
             </div>
             <textarea
@@ -91,16 +112,24 @@ const Contact = () => {
               rows={6}
               placeholder="Your Message"
               required
-              className="px-6 py-4 rounded-xl bg-slate-700/50 text-white border border-blue-500/30 focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400 resize-none"
+              className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400 resize-none"
+              style={{
+                background: 'var(--bg-tertiary)',
+                borderColor: 'var(--border-secondary)',
+                color: 'var(--text-primary)'
+              }}
             />
             <button
               type="submit"
               disabled={loading}
               className={`px-8 py-4 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-105 ${
                 loading
-                  ? "bg-slate-600 cursor-not-allowed"
-                  : "bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg hover:shadow-xl"
+                  ? "cursor-not-allowed"
+                  : "shadow-lg hover:shadow-xl"
               }`}
+              style={{
+                background: loading ? 'var(--bg-muted)' : 'var(--gradient-primary)'
+              }}
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-3">
@@ -123,35 +152,44 @@ const Contact = () => {
 
         {/* Contact info */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center p-6 backdrop-blur-sm border rounded-xl" style={{
+            background: 'var(--bg-secondary)',
+            borderColor: 'var(--border-secondary)'
+          }}>
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ background: 'var(--bg-tertiary)' }}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-primary)' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
-            <p className="text-gray-300">{mail_id}</p>
+            <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Email</h3>
+            <p style={{ color: 'var(--text-secondary)' }}>{mail_id}</p>
           </div>
           
-          <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center p-6 backdrop-blur-sm border rounded-xl" style={{
+            background: 'var(--bg-secondary)',
+            borderColor: 'var(--border-secondary)'
+          }}>
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ background: 'var(--bg-tertiary)' }}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-primary)' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
-            <p className="text-gray-300">Based in India, available for remote work worldwide</p>
+            <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Location</h3>
+            <p style={{ color: 'var(--text-secondary)' }}>Based in India, available for remote work worldwide</p>
           </div>
           
-          <div className="flex flex-col items-center p-6 bg-slate-800/30 backdrop-blur-sm border border-blue-500/20 rounded-xl">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-full flex items-center justify-center mb-4">
-              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex flex-col items-center p-6 backdrop-blur-sm border rounded-xl" style={{
+            background: 'var(--bg-secondary)',
+            borderColor: 'var(--border-secondary)'
+          }}>
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ background: 'var(--bg-tertiary)' }}>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-primary)' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-white mb-2">Response Time</h3>
-            <p className="text-gray-300">Within 24 hours</p>
+            <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Response Time</h3>
+            <p style={{ color: 'var(--text-secondary)' }}>Within 24 hours</p>
           </div>
         </div>
       </div>

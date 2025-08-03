@@ -29,7 +29,10 @@ const PageNotFound = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white overflow-hidden">
+    <section className="relative min-h-screen w-full text-white overflow-hidden theme-transition" style={{
+      background: 'var(--bg-primary)',
+      color: 'var(--text-primary)'
+    }}>
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-red-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
@@ -59,10 +62,10 @@ const PageNotFound = () => {
             className="mb-8"
             variants={itemVariants}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
               Oops! Page Not Found
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               The page you're looking for doesn't exist or has been moved. 
               Don't worry, let's get you back on track!
             </p>
@@ -119,7 +122,11 @@ const PageNotFound = () => {
             </motion.button>
             <motion.button
               onClick={() => navigate(-1)}
-              className="px-8 py-4 bg-transparent border-2 border-gray-400 text-gray-300 hover:border-white hover:text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-4 bg-transparent border-2 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+              style={{
+                borderColor: 'var(--border-primary)',
+                color: 'var(--text-secondary)'
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -132,13 +139,14 @@ const PageNotFound = () => {
             className="mt-12 text-center"
             variants={itemVariants}
           >
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm mb-4" style={{ color: 'var(--text-muted)' }}>
               If you believe this is an error, please contact me
             </p>
             <div className="flex justify-center space-x-6">
               <a
                 href="mailto:your.email@example.com"
-                className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                className="transition-colors duration-300"
+                style={{ color: 'var(--accent-primary)' }}
               >
                 Email Support
               </a>
@@ -146,7 +154,8 @@ const PageNotFound = () => {
                 href="https://github.com/yourusername"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
+                className="transition-colors duration-300"
+                style={{ color: 'var(--accent-primary)' }}
               >
                 GitHub
               </a>

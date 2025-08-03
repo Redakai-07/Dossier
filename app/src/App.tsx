@@ -6,6 +6,8 @@ import AboutMe from './models/AboutMe/AboutMe';
 import Contact from './models/Contact/Contact';
 import PageNotFound from './models/PageNotFound/PageNotFound';
 import Layout from './components/Layout/Layout';
+import { ThemeProvider } from './contexts/ThemeContext';
+
 // function App() {
 
 // import Particles from '../src/components/Background/Particles';
@@ -27,17 +29,19 @@ import Layout from './components/Layout/Layout';
 
  function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="education" element={<Education />} />
-          <Route path="about" element={<AboutMe />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="education" element={<Education />} />
+            <Route path="about" element={<AboutMe />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
