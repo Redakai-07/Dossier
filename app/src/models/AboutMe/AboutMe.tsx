@@ -51,10 +51,42 @@ const passions = [
 ];
 
 const timeline = [
-  { year: '2021', event: 'Started B.E. in Computer Science' },
-  { year: '2023', event: 'Built TaskFlow Navigator & Employee Manager' },
-  { year: '2024', event: 'Interned at Inventech & Rooman Technologies' },
-  { year: '2025', event: 'Graduating and open to dev opportunities' },
+  {
+    year: '2016-2019',
+    title: 'High School',
+    subtitle: 'Science Stream',
+    description: 'Completed my high school education with a strong foundation in science and mathematics.',
+    image: '🎓',
+    link: '#',
+    type: 'education'
+  },
+  {
+    year: '2019-2021',
+    title: 'Pre-University Course',
+    subtitle: 'PUC - Science',
+    description: 'Focused on advanced science subjects and prepared for engineering entrance exams.',
+    image: '📚',
+    link: '#',
+    type: 'education'
+  },
+  {
+    year: '2021-2025',
+    title: 'Bachelor of Engineering',
+    subtitle: 'Computer Science & Engineering',
+    description: 'Currently pursuing my BE degree with focus on software development and modern technologies.',
+    image: '💻',
+    link: '#',
+    type: 'education'
+  },
+  {
+    year: '2025',
+    title: 'Software Developer Intern',
+    subtitle: 'Inventech',
+    description: 'Working on real-world projects, gaining hands-on experience in full-stack development.',
+    image: '🏢',
+    link: 'https://inventech.com',
+    type: 'experience'
+  }
 ];
 
 const AboutMe = () => {
@@ -303,14 +335,14 @@ const AboutMe = () => {
           </div>
         </div>
 
-        {/* Timeline - Completely Redesigned */}
+        {/* Enhanced Timeline Section */}
         <div id="journey">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-4">
               My Journey
             </h3>
             <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>
-              A timeline of my professional growth and achievements in the tech world.
+              A timeline of my educational and professional growth in the tech world.
             </p>
           </div>
           
@@ -318,7 +350,7 @@ const AboutMe = () => {
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 via-teal-500 to-indigo-500 h-full rounded-full"></div>
             
-            <div className="space-y-12">
+            <div className="space-y-8">
               {timeline.map((item, index) => (
                 <motion.div
                   key={index}
@@ -334,15 +366,51 @@ const AboutMe = () => {
                   
                   {/* Content Card */}
                   <div className={`w-5/12 ${index % 2 === 0 ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
-                    <div className="backdrop-blur-sm p-6 rounded-xl border hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10" style={{
+                    <div className="backdrop-blur-sm p-6 rounded-xl border hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 group" style={{
                       background: 'var(--bg-secondary)',
                       borderColor: 'var(--border-secondary)'
                     }}>
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-2xl font-bold" style={{ color: 'var(--accent-primary)' }}>{item.year}</span>
-                        <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full"></div>
+                      {/* Image and Year */}
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="text-3xl">{item.image}</div>
+                        <div>
+                          <span className="text-lg font-bold" style={{ color: 'var(--accent-primary)' }}>{item.year}</span>
+                          <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mt-1"></div>
+                        </div>
                       </div>
-                      <p className="text-lg font-medium" style={{ color: 'var(--text-secondary)' }}>{item.event}</p>
+                      
+                      {/* Title and Subtitle */}
+                      <h4 className="text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                        {item.title}
+                      </h4>
+                      <p className="text-sm font-medium mb-3" style={{ color: 'var(--accent-secondary)' }}>
+                        {item.subtitle}
+                      </p>
+                      
+                      {/* Description */}
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                        {item.description}
+                      </p>
+                      
+                      {/* Link Button */}
+                      {item.link && item.link !== '#' && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 text-sm border rounded-lg transition-all duration-300 hover:scale-105"
+                          style={{
+                            background: 'var(--bg-tertiary)',
+                            borderColor: 'var(--border-primary)',
+                            color: 'var(--accent-primary)'
+                          }}
+                        >
+                          Visit {item.type === 'education' ? 'Institution' : 'Company'}
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>
