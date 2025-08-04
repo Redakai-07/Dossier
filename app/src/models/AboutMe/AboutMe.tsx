@@ -1,6 +1,16 @@
 import profileImg from '../../assets/profile.jpg';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
+const HighSchool = import.meta.env.VITE_HIGH_SCHOOL; 
+const PUC = import.meta.env.VITE_PUC; 
+const BE = import.meta.env.VITE_BE; 
+const Inventech = import.meta.env.VITE_INVENTECH; 
+const Rooman = import.meta.env.VITE_ROOMAN; 
+const highSchoolLink = import.meta.env.VITE_HIGH_SCHOOL_LINK;
+const pucLink = import.meta.env.VITE_PUC_LINK;
+const beLink = import.meta.env.VITE_BE_LINK;
+const inventechLink = import.meta.env.VITE_INVENTECH_LINK;
+const roomanLink = import.meta.env.VITE_ROOMAN_LINK;
 
 const timelineVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -54,37 +64,33 @@ const timeline = [
   {
     year: '2016-2019',
     title: 'High School',
-    subtitle: 'Science Stream',
-    description: 'Completed my high school education with a strong foundation in science and mathematics.',
-    image: '🎓',
-    link: '#',
+    subtitle: HighSchool,
+    // description: 'Completed my high school education with a strong foundation in science and mathematics.',
+    link: highSchoolLink,
     type: 'education'
   },
   {
     year: '2019-2021',
     title: 'Pre-University Course',
-    subtitle: 'PUC - Science',
-    description: 'Focused on advanced science subjects and prepared for engineering entrance exams.',
-    image: '📚',
-    link: '#',
+    subtitle: PUC,
+    // description: 'Focused on advanced science subjects and prepared for engineering entrance exams.',
+    link: pucLink,
     type: 'education'
   },
   {
     year: '2021-2025',
     title: 'Bachelor of Engineering',
-    subtitle: 'Computer Science & Engineering',
-    description: 'Currently pursuing my BE degree with focus on software development and modern technologies.',
-    image: '💻',
-    link: '#',
+    subtitle: BE,
+    // description: 'Currently pursuing my BE degree with focus on software development and modern technologies.',
+    link: beLink,
     type: 'education'
   },
   {
     year: '2025',
     title: 'Software Developer Intern',
-    subtitle: 'Inventech',
-    description: 'Working on real-world projects, gaining hands-on experience in full-stack development.',
-    image: '🏢',
-    link: 'https://inventech.com',
+    subtitle: Inventech,
+    // description: 'Working on real-world projects, gaining hands-on experience in full-stack development.',
+    link: inventechLink,
     type: 'experience'
   }
 ];
@@ -226,7 +232,11 @@ const AboutMe = () => {
                 {/* Location */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-                    <i className="fas fa-map-marker-alt" style={{ color: 'var(--accent-primary)' }}></i>
+                    {/* Use an inline SVG instead of Font Awesome for reliable icon rendering */}
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-primary)' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 22s8-4.5 8-10A8 8 0 104 12c0 5.5 8 10 8 10z" />
+                      <circle cx="12" cy="12" r="3" fill="currentColor" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Location</p>
@@ -235,9 +245,14 @@ const AboutMe = () => {
                 </div>
 
                 {/* Languages */}
+                {/* Languages */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-                    <i className="fas fa-language" style={{ color: 'var(--accent-secondary)' }}></i>
+                    {/* Inline SVG for a globe/language icon */}
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-secondary)' }}>
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Languages</p>
@@ -248,44 +263,60 @@ const AboutMe = () => {
                 {/* Timezone */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-                    <i className="fas fa-clock" style={{ color: 'var(--accent-tertiary)' }}></i>
+                    {/* Inline SVG for clock icon */}
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-tertiary)' }}>
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6l4 2" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Timezone</p>
-                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>⏰ IST (UTC+5:30)</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>IST (UTC+5:30)</p>
                   </div>
                 </div>
 
                 {/* Work Preference */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-                    <i className="fas fa-briefcase" style={{ color: 'var(--accent-primary)' }}></i>
+                    {/* Inline SVG for briefcase icon */}
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-primary)' }}>
+                      <rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" strokeWidth="2" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7V5a4 4 0 00-8 0v2" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Work Preference</p>
-                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>🌍 Remote & Hybrid</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>Remote & Hybrid</p>
                   </div>
                 </div>
 
                 {/* Education */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-                    <i className="fas fa-graduation-cap" style={{ color: 'var(--accent-secondary)' }}></i>
+                    {/* Inline SVG for graduation cap icon */}
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-secondary)' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14v7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 19a7 7 0 0014 0" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Education</p>
-                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>🎓 B.E. Computer Science</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>B.E. Computer Science</p>
                   </div>
                 </div>
 
                 {/* Experience */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-                    <i className="fas fa-code" style={{ color: 'var(--accent-tertiary)' }}></i>
+                    {/* Inline SVG for code icon */}
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--accent-tertiary)' }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                    </svg>
                   </div>
                   <div>
                     <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Experience</p>
-                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>💼 1+ Years</p>
+                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>1+ Years</p>
                   </div>
                 </div>
               </div>
@@ -372,7 +403,6 @@ const AboutMe = () => {
                     }}>
                       {/* Image and Year */}
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="text-3xl">{item.image}</div>
                         <div>
                           <span className="text-lg font-bold" style={{ color: 'var(--accent-primary)' }}>{item.year}</span>
                           <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mt-1"></div>
