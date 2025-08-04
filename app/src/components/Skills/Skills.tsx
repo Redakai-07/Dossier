@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Tooltip } from 'antd';
 
 // Skill categories for better organization
 const skillCategories = {
@@ -51,6 +50,8 @@ const skillCategories = {
 };
 
 const Skills = () => {
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+
   useEffect(() => {
     AOS.init({ duration: 800 });
   }, []);
@@ -99,49 +100,48 @@ const Skills = () => {
 
               {/* Skills Flex Container */}
               <div className="flex flex-wrap justify-center items-center gap-6">
-                {category.skills.map((skill, skillIndex) => (
-                  <Tooltip
-                    key={skill.name}
-                    title={
-                      <div className="text-center">
-                        <div className="font-semibold text-blue-300 mb-1">{skill.name}</div>
-                        <div className="text-gray-300 leading-relaxed">{skill.description}</div>
-                      </div>
-                    }
-                    placement="bottom"
-                    color="#1f2937"
-                    overlayStyle={{ maxWidth: '280px' }}
-                  >
-                    <div
-                      className="group relative backdrop-blur-sm border rounded-xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 hover:bg-slate-800/50 text-center w-32 h-32 flex flex-col items-center justify-center overflow-hidden cursor-pointer"
-                      style={{
-                        background: 'var(--bg-secondary)',
-                        borderColor: 'var(--border-secondary)',
-                        boxShadow: '0 4px 6px var(--shadow-secondary)'
-                      }}
-                      data-aos="zoom-in"
-                      data-aos-delay={skillIndex * 100}
-                    >
-                      {/* Skill Icon */}
-                      <div className="flex justify-center items-center mb-3 relative z-10">
-                        <div className="p-3 rounded-xl flex justify-center items-center w-12 h-12 group-hover:scale-110" style={{ background: 'var(--bg-tertiary)' }}>
-                          <i className={`${skill.icon} text-2xl group-hover:scale-110`} />
+                                 {category.skills.map((skill, skillIndex) => (
+                   <div
+                     key={skill.name}
+                     className="relative"
+                     onMouseEnter={() => setActiveTooltip(skill.name)}
+                     onMouseLeave={() => setActiveTooltip(null)}
+                   >
+                     <div
+                       className="relative backdrop-blur-sm border rounded-xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 text-center w-32 h-32 flex flex-col items-center justify-center overflow-hidden cursor-pointer"
+                       style={{
+                         background: 'var(--bg-secondary)',
+                         borderColor: 'var(--border-secondary)',
+                         boxShadow: '0 4px 6px var(--shadow-secondary)'
+                       }}
+                       data-aos="zoom-in"
+                       data-aos-delay={skillIndex * 100}
+                     >
+                       {/* Skill Icon */}
+                       <div className="flex justify-center items-center mb-3">
+                         <div className="p-3 rounded-xl flex justify-center items-center w-12 h-12 hover:scale-110" style={{ background: 'var(--bg-tertiary)' }}>
+                           <i className={`${skill.icon} text-2xl hover:scale-110`} />
+                         </div>
+                       </div>
+
+                       {/* Skill Name */}
+                       <h4 className="text-xs font-semibold hover:text-blue-300 transition-colors duration-300 text-center" style={{ color: 'var(--text-primary)' }}>
+                         {skill.name}
+                       </h4>
+                     </div>
+
+                                           {/* Custom Tooltip */}
+                      {activeTooltip === skill.name && (
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-6 py-4 bg-gray-900/95 backdrop-blur-sm text-white text-sm rounded-xl shadow-2xl z-50 w-80 border border-gray-700">
+                          <div className="text-center">
+                            <div className="font-bold text-blue-400 mb-2 text-base">{skill.name}</div>
+                            <div className="text-gray-200 leading-relaxed text-sm">{skill.description}</div>
+                          </div>
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
                         </div>
-                      </div>
-
-                      {/* Skill Name */}
-                      <h4 className="text-xs font-semibold group-hover:text-blue-300 transition-colors duration-300 text-center relative z-10" style={{ color: 'var(--text-primary)' }}>
-                        {skill.name}
-                      </h4>
-
-                      {/* Enhanced Hover Effect Background */}
-                      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-br from-blue-500/10 to-teal-500/10"></div>
-
-                      {/* Glow Effect */}
-                      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-400/20 to-teal-400/20 blur-sm"></div>
-                    </div>
-                  </Tooltip>
-                ))}
+                      )}
+                   </div>
+                 ))}
               </div>
             </div>
           ))}
