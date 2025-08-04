@@ -1,3 +1,5 @@
+import { useTheme } from '../../contexts/ThemeContext';
+
 import profileImg from '../../assets/profile.jpg';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
@@ -5,12 +7,23 @@ const HighSchool = import.meta.env.VITE_HIGH_SCHOOL;
 const PUC = import.meta.env.VITE_PUC; 
 const BE = import.meta.env.VITE_BE; 
 const Inventech = import.meta.env.VITE_INVENTECH; 
-const Rooman = import.meta.env.VITE_ROOMAN; 
 const highSchoolLink = import.meta.env.VITE_HIGH_SCHOOL_LINK;
 const pucLink = import.meta.env.VITE_PUC_LINK;
 const beLink = import.meta.env.VITE_BE_LINK;
 const inventechLink = import.meta.env.VITE_INVENTECH_LINK;
-const roomanLink = import.meta.env.VITE_ROOMAN_LINK;
+
+import problemSolving from '../../assets/What Drives Me/problemSolvingDark.png';
+import learningNewTech from '../../assets/What Drives Me/learningNewTechDark.png';
+import openSource from '../../assets/What Drives Me/openSourceDark.png';
+import cleanCode from '../../assets/What Drives Me/cleanCodeDark.png';
+import userExperience from '../../assets/What Drives Me/uxDark.png';
+
+import problemSolvingLight from '../../assets/What Drives Me/problemSolvingLight.png';
+import learningNewTechLight from '../../assets/What Drives Me/learningNewTechLight.png';
+import openSourceLight from '../../assets/What Drives Me/openSourceLight.png';
+import cleanCodeLight from '../../assets/What Drives Me/cleanCodeLight.png';
+import userExperienceLight from '../../assets/What Drives Me/uxLight.png';
+
 
 const timelineVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -26,38 +39,50 @@ const passions = [
     title: 'Problem Solving',
     icon: '🧩',
     description: 'I love breaking down complex challenges into elegant solutions. Every bug is a puzzle waiting to be solved.',
-    color: 'from-blue-500 to-cyan-500'
+    color: 'from-blue-500 to-cyan-500',
+    image: problemSolving,
+    imageLight: problemSolvingLight
   },
   {
     title: 'Learning New Tech',
     icon: '🚀',
     description: 'Always excited to dive into emerging technologies. Currently exploring AI/ML and cloud architecture.',
-    color: 'from-purple-500 to-pink-500'
+    color: 'from-purple-500 to-pink-500',
+    image: learningNewTech,
+    imageLight: learningNewTechLight
   },
   {
     title: 'Open Source',
     icon: '🌟',
     description: 'Contributing to the developer community. Building tools that others can use and improve upon.',
-    color: 'from-green-500 to-emerald-500'
+    color: 'from-green-500 to-emerald-500',
+    image: openSource,
+    imageLight: openSourceLight
   },
   {
     title: 'Clean Code',
     icon: '✨',
     description: 'Writing code that reads like poetry. Maintainable, scalable, and beautiful solutions.',
-    color: 'from-orange-500 to-red-500'
+    color: 'from-orange-500 to-red-500',
+    image: cleanCode,
+    imageLight: cleanCodeLight
   },
   {
     title: 'User Experience',
     icon: '🎨',
     description: 'Creating interfaces that users love to interact with. Every pixel matters in the user journey.',
-    color: 'from-indigo-500 to-purple-500'
+    color: 'from-indigo-500 to-purple-500',
+    image: userExperience,
+    imageLight: userExperienceLight
   },
-  {
-    title: 'Coffee & Code',
-    icon: '☕',
-    description: 'Best debugging sessions happen with a good cup of coffee. The perfect fuel for late-night coding.',
-    color: 'from-amber-500 to-orange-500'
-  }
+  // {
+  //   title: 'Coffee & Code',
+  //   icon: '☕',
+  //   description: 'Best debugging sessions happen with a good cup of coffee. The perfect fuel for late-night coding.',
+  //   color: 'from-amber-500 to-orange-500',
+  //   image: coffeeAndCode,
+  //   imageLight: coffeeAndCodeLight
+  // }  
 ];
 
 const timeline = [
@@ -71,7 +96,7 @@ const timeline = [
   },
   {
     year: '2019-2021',
-    title: 'Pre-University Course',
+    title: 'Pre-University College',
     subtitle: PUC,
     // description: 'Focused on advanced science subjects and prepared for engineering entrance exams.',
     link: pucLink,
@@ -96,6 +121,8 @@ const timeline = [
 ];
 
 const AboutMe = () => {
+  const { theme } = useTheme();
+  
   return (
     <section
       id="about"
@@ -118,7 +145,7 @@ const AboutMe = () => {
             About Me
           </h2>
           <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            A passionate Computer Science graduate crafting digital experiences with modern technologies
+            A passionate CS Grad crafting digital experiences with modern technologies
           </p>
         </div>
 
@@ -154,10 +181,10 @@ const AboutMe = () => {
                   <div className="text-2xl font-bold" style={{ color: 'var(--accent-secondary)' }}>10+</div>
                   <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Projects</div>
                 </div>
-                <div className="text-center">
+                {/* <div className="text-center">
                   <div className="text-2xl font-bold" style={{ color: 'var(--accent-tertiary)' }}>100%</div>
                   <div className="text-sm" style={{ color: 'var(--text-muted)' }}>Dedication</div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -244,7 +271,6 @@ const AboutMe = () => {
                   </div>
                 </div>
 
-                {/* Languages */}
                 {/* Languages */}
                 <div className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-700/50 transition-all duration-300" style={{ background: 'var(--bg-secondary)' }}>
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
@@ -350,9 +376,14 @@ const AboutMe = () => {
                   borderColor: 'var(--border-secondary)'
                 }}>
                   <div className="flex flex-col h-full">
-                    <div className={`text-3xl bg-gradient-to-br ${passion.color} p-3 rounded-xl w-fit mb-4`}>
+                    {/* <div className={`text-3xl bg-gradient-to-br ${passion.color} p-3 rounded-xl w-fit mb-4`}>
                       {passion.icon}
-                    </div>
+                    </div> */}
+                    <img
+                      src={theme === 'light' ? passion.imageLight : passion.image}
+                      alt={passion.title}
+                      className="w-10 h-10 mb-4"
+                    />
                     <h4 className="text-lg font-bold mb-3 group-hover:text-blue-300 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
                       {passion.title}
                     </h4>
@@ -379,7 +410,9 @@ const AboutMe = () => {
           
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 via-teal-500 to-indigo-500 h-full rounded-full"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 via-teal-500 to-indigo-500 h-full rounded-full hidden md:block"></div>
+            {/* Mobile Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 via-teal-500 to-indigo-500 h-full rounded-full md:hidden"></div>
             
             <div className="space-y-8">
               {timeline.map((item, index) => (
@@ -390,13 +423,13 @@ const AboutMe = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={timelineVariants}
-                  className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                  className={`relative flex items-center md:${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} flex-col`}
                 >
                   {/* Timeline Dot */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full border-4 shadow-lg z-10" style={{ borderColor: 'var(--bg-primary)' }}></div>
                   
                   {/* Content Card */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'mr-auto pr-8' : 'ml-auto pl-8'}`}>
+                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'} mt-8 md:mt-0`}>
                     <div className="backdrop-blur-sm p-6 rounded-xl border hover:border-blue-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 group" style={{
                       background: 'var(--bg-secondary)',
                       borderColor: 'var(--border-secondary)'
@@ -418,9 +451,9 @@ const AboutMe = () => {
                       </p>
                       
                       {/* Description */}
-                      <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                      {/* <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
                         {item.description}
-                      </p>
+                      </p> */}
                       
                       {/* Link Button */}
                       {item.link && item.link !== '#' && (

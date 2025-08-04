@@ -24,6 +24,11 @@ const Contact = () => {
       return;
     }
 
+      if (email === mail_id) {
+      toast.error("Sender's email cannot be the same as the recipient's email.");
+      return;
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast.error("Please enter a valid email address.");
@@ -85,7 +90,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="from_name"
-                placeholder="Your Name"
+                placeholder="Name"
                 required
                 className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
                 style={{
@@ -97,7 +102,7 @@ const Contact = () => {
               <input
                 type="email"
                 name="from_email"
-                placeholder="Your Email"
+                placeholder="Email"
                 required
                 className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
                 style={{
@@ -110,7 +115,7 @@ const Contact = () => {
             <textarea
               name="message"
               rows={6}
-              placeholder="Your Message"
+              placeholder="Message"
               required
               className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400 resize-none"
               style={{
@@ -176,7 +181,7 @@ const Contact = () => {
               </svg>
             </div>
             <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Location</h3>
-            <p style={{ color: 'var(--text-secondary)' }}>Based in India, available for remote work worldwide</p>
+            <p style={{ color: 'var(--text-secondary)' }}>Bengaluru</p>
           </div>
           
           <div className="flex flex-col items-center p-6 backdrop-blur-sm border rounded-xl" style={{

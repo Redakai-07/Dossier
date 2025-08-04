@@ -5,6 +5,7 @@ import Education from './components/Education/Education';
 import AboutMe from './models/AboutMe/AboutMe';
 import Contact from './models/Contact/Contact';
 import PageNotFound from './models/PageNotFound/PageNotFound';
+import UnderConstruction from './models/UnderConstruction/UnderConstruction';
 import Layout from './components/Layout/Layout';
 import { ThemeProvider } from './contexts/ThemeContext';
 
@@ -37,6 +38,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
             <Route path="education" element={<Education />} />
             <Route path="about" element={<AboutMe />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="under-construction" element={<UnderConstruction />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

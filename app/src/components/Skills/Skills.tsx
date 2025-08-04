@@ -56,8 +56,8 @@ const Skills = () => {
   }, []);
 
   return (
-    <section 
-      id="skills" 
+    <section
+      id="skills"
       className="relative text-white py-20 px-6 md:px-16 overflow-hidden theme-transition"
       style={{
         background: 'var(--bg-primary)',
@@ -78,7 +78,7 @@ const Skills = () => {
             Technical Expertise
           </h2>
           <p className="text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-            A comprehensive skill set spanning modern web development technologies, 
+            A comprehensive skill set spanning modern web development technologies,
             from frontend frameworks to backend systems and development tools
           </p>
         </div>
@@ -99,49 +99,49 @@ const Skills = () => {
 
               {/* Skills Flex Container */}
               <div className="flex flex-wrap justify-center items-center gap-6">
-                                                  {category.skills.map((skill, skillIndex) => (
-                   <Tooltip
-                     key={skill.name}
-                     title={
-                       <div className="text-center">
-                         <div className="font-semibold text-blue-300 mb-1">{skill.name}</div>
-                         <div className="text-gray-300 leading-relaxed">{skill.description}</div>
-                       </div>
-                     }
-                     placement="bottom"
-                     color="#1f2937"
-                     overlayStyle={{ maxWidth: '280px' }}
-                   >
-                     <div
-                       className="group relative backdrop-blur-sm border rounded-xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 hover:bg-slate-800/50 text-center w-32 h-32 flex flex-col items-center justify-center overflow-hidden cursor-pointer"
-                       style={{
-                         background: 'var(--bg-secondary)',
-                         borderColor: 'var(--border-secondary)',
-                         boxShadow: '0 4px 6px var(--shadow-secondary)'
-                       }}
-                       data-aos="zoom-in"
-                       data-aos-delay={skillIndex * 100}
-                     >
-                                               {/* Skill Icon */}
-                        <div className="flex justify-center items-center mb-3 relative z-10">
-                          <div className="p-3 rounded-xl transition-all duration-300 flex justify-center items-center w-12 h-12 group-hover:scale-110 group-hover:bg-blue-500/20 group-hover:shadow-lg group-hover:shadow-blue-500/30" style={{ background: 'var(--bg-tertiary)' }}>
-                            <i className={`${skill.icon} text-2xl group-hover:scale-110 group-hover:opacity-0 transition-all duration-300`} />
-                          </div>
+                {category.skills.map((skill, skillIndex) => (
+                  <Tooltip
+                    key={skill.name}
+                    title={
+                      <div className="text-center">
+                        <div className="font-semibold text-blue-300 mb-1">{skill.name}</div>
+                        <div className="text-gray-300 leading-relaxed">{skill.description}</div>
+                      </div>
+                    }
+                    placement="bottom"
+                    color="#1f2937"
+                    overlayStyle={{ maxWidth: '280px' }}
+                  >
+                    <div
+                      className="group relative backdrop-blur-sm border rounded-xl p-6 shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40 hover:bg-slate-800/50 text-center w-32 h-32 flex flex-col items-center justify-center overflow-hidden cursor-pointer"
+                      style={{
+                        background: 'var(--bg-secondary)',
+                        borderColor: 'var(--border-secondary)',
+                        boxShadow: '0 4px 6px var(--shadow-secondary)'
+                      }}
+                      data-aos="zoom-in"
+                      data-aos-delay={skillIndex * 100}
+                    >
+                      {/* Skill Icon */}
+                      <div className="flex justify-center items-center mb-3 relative z-10">
+                        <div className="p-3 rounded-xl flex justify-center items-center w-12 h-12 group-hover:scale-110" style={{ background: 'var(--bg-tertiary)' }}>
+                          <i className={`${skill.icon} text-2xl group-hover:scale-110`} />
                         </div>
+                      </div>
 
-                       {/* Skill Name */}
-                       <h4 className="text-xs font-semibold group-hover:text-blue-300 transition-colors duration-300 text-center relative z-10" style={{ color: 'var(--text-primary)' }}>
-                         {skill.name}
-                       </h4>
+                      {/* Skill Name */}
+                      <h4 className="text-xs font-semibold group-hover:text-blue-300 transition-colors duration-300 text-center relative z-10" style={{ color: 'var(--text-primary)' }}>
+                        {skill.name}
+                      </h4>
 
-                       {/* Enhanced Hover Effect Background */}
-                       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-br from-blue-500/10 to-teal-500/10"></div>
-                       
-                       {/* Glow Effect */}
-                       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-400/20 to-teal-400/20 blur-sm"></div>
-                     </div>
-                   </Tooltip>
-                 ))}
+                      {/* Enhanced Hover Effect Background */}
+                      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-br from-blue-500/10 to-teal-500/10"></div>
+
+                      {/* Glow Effect */}
+                      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-blue-400/20 to-teal-400/20 blur-sm"></div>
+                    </div>
+                  </Tooltip>
+                ))}
               </div>
             </div>
           ))}
@@ -157,7 +157,7 @@ const Skills = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              'Redux','Axios', 'Vite', 'Sass', 'Bootstrap', 'Material-UI', 'CI/CD', 'DevOps', 'Agile', 'Scrum',
+              'Redux', 'Axios', 'Vite', 'Sass', 'Bootstrap', 'Material-UI', 'CI/CD', 'DevOps', 'Agile', 'Scrum',
               'RESTful APIs',
             ].map((tech, index) => (
               <span

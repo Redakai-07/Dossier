@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
+import { Dropdown, Menu } from "antd";
 import darkLogo from "../../assets/dark.png";
 import lightLogo from "../../assets/light.png";
 
@@ -12,15 +13,21 @@ const NAV_ITEMS = [
 ];
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
-  const mobileMenuRef = useRef<HTMLUListElement>(null);
+  const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+
+  // Check if a nav item is currently active
+  const isActive = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
 
   const handleNavigate = (path: string) => {
     navigate(path);
-    setOpen(false);
   };
 
   useEffect(() => {
@@ -31,15 +38,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on Escape key
-  useEffect(() => {
-    if (!open) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
+
 
   return (
     <nav
@@ -78,14 +77,18 @@ const Navbar = () => {
           {NAV_ITEMS.map((item) => (
             <li
               key={item.path}
-              className="cursor-pointer text-lg hover:text-blue-400 transition-all duration-300 relative group"
+              className={`cursor-pointer text-lg transition-all duration-300 relative group ${
+                isActive(item.path) 
+                  ? "text-blue-400" 
+                  : "hover:text-blue-400"
+              }`}
               onClick={() => handleNavigate(item.path)}
               role="menuitem"
               tabIndex={0}
               onKeyDown={e => {
                 if (e.key === "Enter" || e.key === " ") handleNavigate(item.path);
               }}
-              style={{ color: 'var(--text-primary)' }}
+              style={{ color: isActive(item.path) ? 'var(--accent-primary)' : 'var(--text-primary)' }}
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 transition-all duration-300 group-hover:w-full rounded-full"></span>
@@ -111,8 +114,8 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden relative flex items-center gap-4">
+        {/* Mobile Menu */}
+        <div className="md:hidden flex items-center gap-4">
           {/* Theme Toggle Button for Mobile */}
           <button
             onClick={toggleTheme}
@@ -128,80 +131,68 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            className={`p-2 rounded-lg transition-all duration-300 ${
-              open 
-                ? "bg-gradient-to-r from-blue-600/20 to-teal-600/20 text-blue-400" 
-                : "text-white hover:text-blue-400 hover:bg-slate-800/50"
-            }`}
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            style={{ 
-              color: 'var(--text-primary)',
-              backgroundColor: open ? 'var(--bg-tertiary)' : 'transparent'
+          {/* Ant Design Dropdown */}
+          <Dropdown
+            overlay={
+              <Menu
+                items={NAV_ITEMS.map((item) => ({
+                  key: item.path,
+                  label: (
+                    <div className="flex items-center gap-3 py-1">
+                      <div className={`w-2 h-2 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full transition-opacity duration-300 ${
+                        isActive(item.path) ? "opacity-100" : "opacity-0"
+                      }`}></div>
+                      <span className={isActive(item.path) ? "text-blue-400 font-medium" : ""}>
+                        {item.label}
+                      </span>
+                    </div>
+                  ),
+                  onClick: () => handleNavigate(item.path),
+                  style: {
+                    backgroundColor: isActive(item.path) ? 'var(--bg-tertiary)' : 'transparent',
+                    color: isActive(item.path) ? 'var(--accent-primary)' : 'var(--text-primary)',
+                    borderRadius: '8px',
+                    margin: '2px 8px',
+                    padding: '8px 12px',
+                    transition: 'all 0.3s ease'
+                  }
+                }))}
+                style={{
+                  backgroundColor: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-secondary)',
+                  borderRadius: '12px',
+                  boxShadow: '0 10px 25px var(--shadow-primary)',
+                  backdropFilter: 'blur(10px)',
+                  padding: '8px 0'
+                }}
+              />
+            }
+            trigger={['click']}
+            placement="bottomRight"
+            overlayStyle={{
+              zIndex: 1000
             }}
           >
-            <svg
-              className="w-6 h-6 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              {open ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-
-          {/* Mobile Dropdown */}
-          {open && (
-            <div 
-              className="absolute right-0 mt-3 w-56 backdrop-blur-md border rounded-2xl shadow-2xl py-4 z-50 animate-fadeIn"
-              style={{
-                backgroundColor: 'var(--bg-secondary)',
-                borderColor: 'var(--border-secondary)',
-                boxShadow: '0 10px 25px var(--shadow-primary)'
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              className="p-2 rounded-lg transition-all duration-300 text-white hover:text-blue-400 hover:bg-slate-800/50"
+              style={{ 
+                color: 'var(--text-primary)',
+                backgroundColor: 'transparent'
               }}
             >
-              <div className="px-4 py-2 mb-2 border-b" style={{ borderColor: 'var(--border-secondary)' }}>
-                <p className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>Navigation</p>
-              </div>
-              <ul
-                id="mobile-menu"
-                ref={mobileMenuRef}
-                className="space-y-1"
-                role="menu"
+              <svg
+                className="w-6 h-6 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
               >
-                {NAV_ITEMS.map((item) => (
-                  <li
-                    key={item.path}
-                    className="px-4 py-3 text-base hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-teal-600/20 hover:text-blue-300 cursor-pointer transition-all duration-300 mx-2 rounded-xl group"
-                    onClick={() => handleNavigate(item.path)}
-                    role="menuitem"
-                    tabIndex={0}
-                    onKeyDown={e => {
-                      if (e.key === "Enter" || e.key === " ") handleNavigate(item.path);
-                    }}
-                    style={{ 
-                      color: 'var(--text-primary)',
-                      backgroundColor: 'transparent'
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      {item.label}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </Dropdown>
         </div>
       </div>
     </nav>

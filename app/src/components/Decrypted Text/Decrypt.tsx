@@ -5,167 +5,149 @@ import type { HTMLMotionProps } from 'framer-motion'
 interface DecryptedTextProps extends HTMLMotionProps<'span'> {
     text: string
     speed?: number
-    maxIterations?: number
-    sequential?: boolean
-    revealDirection?: 'start' | 'end' | 'center'
-    useOriginalCharsOnly?: boolean
-    characters?: string
+    revealDirection?: 'start' | 'end' | 'center' | 'wave' | 'random'
     className?: string
-    encryptedClassName?: string
     parentClassName?: string
-    animateOn?: 'view' | 'hover'
+    animateOn?: 'view' | 'hover' | 'load'
+    glowEffect?: boolean
+    particleEffect?: boolean
 }
 
 export default function DecryptedText({
     text,
-    speed = 10,
-    maxIterations = 100,
-    sequential = false,
-    revealDirection = 'start',
-    useOriginalCharsOnly = false,
-    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+',
+    speed = 2, // Reduced from 5 to 2 for faster animation
+    revealDirection = 'wave',
     className = '',
     parentClassName = '',
-    encryptedClassName = '',
-    animateOn = 'hover',
+    animateOn = 'view',
+    glowEffect = true,
+    particleEffect = true,
     ...props
 }: DecryptedTextProps) {
     const [displayText, setDisplayText] = useState<string>(text)
-    const [isHovering, setIsHovering] = useState<boolean>(false)
-    const [isScrambling, setIsScrambling] = useState<boolean>(false)
-    const [revealedIndices, setRevealedIndices] = useState<Set<number>>(new Set())
+    const [isAnimating, setIsAnimating] = useState<boolean>(false)
     const [hasAnimated, setHasAnimated] = useState<boolean>(false)
+    const [particles, setParticles] = useState<Array<{id: number, x: number, y: number, vx: number, vy: number}>>([])
     const containerRef = useRef<HTMLSpanElement>(null)
 
+    // Cool animation characters for the scramble effect
+    const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?'
+    
+    // Generate particle positions for the glow effect
     useEffect(() => {
-        let interval: NodeJS.Timeout
-        let currentIteration = 0
+        if (particleEffect && isAnimating) {
+            const newParticles = Array.from({ length: 20 }, (_, i) => ({
+                id: i,
+                x: Math.random() * 100,
+                y: Math.random() * 100,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2
+            }))
+            setParticles(newParticles)
+        }
+    }, [isAnimating, particleEffect])
 
-        const getNextIndex = (revealedSet: Set<number>): number => {
-            const textLength = text.length
+    // Main animation effect
+    useEffect(() => {
+        if (!isAnimating) {
+            setDisplayText(text)
+            return
+        }
+
+        let currentIndex = 0
+
+        const getRevealOrder = () => {
+            const indices = Array.from({ length: text.length }, (_, i) => i)
             switch (revealDirection) {
                 case 'start':
-                    return revealedSet.size
+                    return indices
                 case 'end':
-                    return textLength - 1 - revealedSet.size
+                    return indices.reverse()
                 case 'center': {
-                    const middle = Math.floor(textLength / 2)
-                    const offset = Math.floor(revealedSet.size / 2)
-                    const nextIndex =
-                        revealedSet.size % 2 === 0
-                            ? middle + offset
-                            : middle - offset - 1
-
-                    if (nextIndex >= 0 && nextIndex < textLength && !revealedSet.has(nextIndex)) {
-                        return nextIndex
-                    }
-                    for (let i = 0; i < textLength; i++) {
-                        if (!revealedSet.has(i)) return i
-                    }
-                    return 0
+                    const middle = Math.floor(text.length / 2)
+                    const left = indices.slice(0, middle).reverse()
+                    const right = indices.slice(middle)
+                    return [middle, ...left, ...right]
                 }
+                case 'wave':
+                    return indices.sort((a, b) => {
+                        const waveA = Math.sin(a * 0.3) * 10 + a
+                        const waveB = Math.sin(b * 0.3) * 10 + b
+                        return waveA - waveB
+                    })
+                case 'random':
+                    return indices.sort(() => Math.random() - 0.5)
                 default:
-                    return revealedSet.size
+                    return indices
             }
         }
 
-        const availableChars = useOriginalCharsOnly
-            ? Array.from(new Set(text.split(''))).filter((char) => char !== ' ')
-            : characters.split('')
+        const revealOrder = getRevealOrder()
+        let currentText = text.split('').map(() => ' ')
+        setDisplayText(currentText.join(''))
 
-        const shuffleText = (originalText: string, currentRevealed: Set<number>): string => {
-            if (useOriginalCharsOnly) {
-                const positions = originalText.split('').map((char, i) => ({
-                    char,
-                    isSpace: char === ' ',
-                    index: i,
-                    isRevealed: currentRevealed.has(i),
-                }))
-
-                const nonSpaceChars = positions
-                    .filter((p) => !p.isSpace && !p.isRevealed)
-                    .map((p) => p.char)
-
-                for (let i = nonSpaceChars.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1))
-                        ;[nonSpaceChars[i], nonSpaceChars[j]] = [nonSpaceChars[j], nonSpaceChars[i]]
+        // Scramble effect
+        const scrambleInterval = setInterval(() => {
+            currentText = currentText.map((char, i) => {
+                if (revealOrder.includes(i) && revealOrder.indexOf(i) <= currentIndex) {
+                    return text[i]
                 }
+                if (char === ' ') return scrambleChars[Math.floor(Math.random() * scrambleChars.length)]
+                return scrambleChars[Math.floor(Math.random() * scrambleChars.length)]
+            })
+            setDisplayText(currentText.join(''))
+        }, speed)
 
-                let charIndex = 0
-                return positions
-                    .map((p) => {
-                        if (p.isSpace) return ' '
-                        if (p.isRevealed) return originalText[p.index]
-                        return nonSpaceChars[charIndex++]
-                    })
-                    .join('')
+        // Reveal effect
+        const revealInterval = setInterval(() => {
+            if (currentIndex < text.length) {
+                currentText[revealOrder[currentIndex]] = text[revealOrder[currentIndex]]
+                setDisplayText(currentText.join(''))
+                currentIndex++
             } else {
-                return originalText
-                    .split('')
-                    .map((char, i) => {
-                        if (char === ' ') return ' '
-                        if (currentRevealed.has(i)) return originalText[i]
-                        return availableChars[Math.floor(Math.random() * availableChars.length)]
-                    })
-                    .join('')
+                clearInterval(scrambleInterval)
+                clearInterval(revealInterval)
+                setIsAnimating(false)
+                setDisplayText(text)
             }
-        }
-
-        if (isHovering) {
-            setIsScrambling(true)
-            interval = setInterval(() => {
-                setRevealedIndices((prevRevealed) => {
-                    if (sequential) {
-                        if (prevRevealed.size < text.length) {
-                            const nextIndex = getNextIndex(prevRevealed)
-                            const newRevealed = new Set(prevRevealed)
-                            newRevealed.add(nextIndex)
-                            setDisplayText(shuffleText(text, newRevealed))
-                            return newRevealed
-                        } else {
-                            clearInterval(interval)
-                            setIsScrambling(false)
-                            return prevRevealed
-                        }
-                    } else {
-                        setDisplayText(shuffleText(text, prevRevealed))
-                        currentIteration++
-                        if (currentIteration >= maxIterations) {
-                            clearInterval(interval)
-                            setIsScrambling(false)
-                            setDisplayText(text)
-                        }
-                        return prevRevealed
-                    }
-                })
-            }, speed)
-        } else {
-            setDisplayText(text)
-            setRevealedIndices(new Set())
-            setIsScrambling(false)
-        }
+        }, speed) // Reduced from speed * 2 to speed for faster reveal
 
         return () => {
-            if (interval) clearInterval(interval)
+            if (scrambleInterval) clearInterval(scrambleInterval)
+            if (revealInterval) clearInterval(revealInterval)
         }
-    }, [
-        isHovering,
-        text,
-        speed,
-        maxIterations,
-        sequential,
-        revealDirection,
-        characters,
-        useOriginalCharsOnly,
-    ])
+    }, [isAnimating, text, speed, revealDirection])
+
+    // Particle animation
+    useEffect(() => {
+        if (!particleEffect || !isAnimating) return
+
+        const particleInterval = setInterval(() => {
+            setParticles(prev => prev.map(particle => ({
+                ...particle,
+                x: particle.x + particle.vx,
+                y: particle.y + particle.vy,
+                vx: particle.x > 100 || particle.x < 0 ? -particle.vx : particle.vx,
+                vy: particle.y > 100 || particle.y < 0 ? -particle.vy : particle.vy
+            })))
+        }, 30) // Reduced from 50ms to 30ms for snappier particle movement
+
+        return () => clearInterval(particleInterval)
+    }, [particleEffect, isAnimating])
 
     useEffect(() => {
+        if (animateOn === 'load') {
+            setIsAnimating(true)
+            setHasAnimated(true)
+            return
+        }
+
         if (animateOn !== 'view') return
 
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting && !hasAnimated) {
-                    setIsHovering(true)
+                    setIsAnimating(true)
                     setHasAnimated(true)
                 }
             })
@@ -191,34 +173,76 @@ export default function DecryptedText({
     const hoverProps =
         animateOn === 'hover'
             ? {
-                onMouseEnter: () => setIsHovering(true),
-                onMouseLeave: () => setIsHovering(false),
+                onMouseEnter: () => setIsAnimating(true),
+                onMouseLeave: () => setIsAnimating(false),
             }
             : {}
 
     return (
         <motion.span
             ref={containerRef}
-            className={`inline-block whitespace-pre-wrap ${parentClassName}`}
+            className={`inline-block whitespace-pre-wrap relative ${parentClassName}`}
             {...hoverProps}
             {...props}
         >
-            <span className="sr-only">{displayText}</span>
+            {/* Particle effect overlay */}
+            {particleEffect && isAnimating && (
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    {particles.map((particle) => (
+                        <motion.div
+                            key={particle.id}
+                            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60"
+                            style={{
+                                left: `${particle.x}%`,
+                                top: `${particle.y}%`,
+                                filter: 'blur(1px)',
+                            }}
+                            animate={{
+                                scale: [0.5, 1, 0.5],
+                                opacity: [0.3, 0.8, 0.3],
+                            }}
+                            transition={{
+                                duration: 1, // Reduced from 2 to 1 for faster particle animation
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
 
-            <span aria-hidden="true">
-                {displayText.split('').map((char, index) => {
-                    const isRevealedOrDone =
-                        revealedIndices.has(index) || !isScrambling || !isHovering
-
-                    return (
-                        <span
-                            key={index}
-                            className={isRevealedOrDone ? className : encryptedClassName}
-                        >
-                            {char}
-                        </span>
-                    )
-                })}
+            {/* Main text with glow effect */}
+            <span 
+                className={`relative z-10 ${glowEffect && isAnimating ? 'animate-pulse' : ''}`}
+                style={{
+                    textShadow: glowEffect && isAnimating 
+                        ? '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)' 
+                        : 'none'
+                }}
+            >
+                {displayText.split('').map((char, index) => (
+                    <motion.span
+                        key={index}
+                        className={`inline-block ${className}`}
+                        initial={{ opacity: 0, y: 10, scale: 0.9 }} // Slightly less movement for snappier effect
+                        animate={isAnimating ? { 
+                            opacity: 1, 
+                            y: 0, 
+                            scale: 1,
+                            color: char === ' ' ? 'transparent' : 'inherit'
+                        } : { opacity: 1, y: 0, scale: 1 }}
+                        transition={{
+                            duration: 0.15, // Reduced from 0.3 to 0.15 for faster character animation
+                            delay: index * 0.025, // Reduced from 0.05 to 0.025 for faster stagger
+                            ease: "easeOut"
+                        }}
+                        style={{
+                            transform: isAnimating ? `rotateY(${Math.random() * 10 - 5}deg)` : 'none'
+                        }}
+                    >
+                        {char}
+                    </motion.span>
+                ))}
             </span>
         </motion.span>
     )

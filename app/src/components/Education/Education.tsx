@@ -1,12 +1,12 @@
 const education = [
   {
     degree: "B.E. in Computer Science and Engineering",
-    college: "Your College Name, City",
+    college: "Govt Sri Krishnarajendra Technological Institute, Bengaluru",
     year: "2021 – 2025",
   },
   {
-    degree: "High School – Science Stream",
-    college: "Your School Name, City",
+    degree: "Pre-University – Science Stream",
+    college: "Sri Sathya Sai Loka Seva Pre-University College, Alike",
     year: "2019 – 2021",
   },
 ];

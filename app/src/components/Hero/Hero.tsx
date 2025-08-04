@@ -69,20 +69,21 @@ const Hero = () => {
 
           {/* Main Title */}
           <div className="space-y-4">
-            <SplitText
-              text="Venkatesh"
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight"
-              style={{ color: 'var(--text-primary)' }}
-              delay={50}
-              duration={0.5}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 50 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-              textAlign="left"
-            />
+            <div style={{ color: 'var(--text-primary)' }}>
+              <SplitText
+                text="Venkatesh"
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight"
+                delay={50}
+                duration={0.5}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 50 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                textAlign="left"
+              />
+            </div>
             <SplitText
               text="Prabhatha Kana"
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text"
@@ -101,16 +102,18 @@ const Hero = () => {
           {/* Description */}
           <motion.div 
             className="text-lg sm:text-xl leading-relaxed max-w-lg"
-            style={{ color: 'var(--text-secondary)' }}
+            style={{ color: 'var(--text-primary)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.3 }}
           >
-            <DecryptedText
-              text="Passionate developer crafting digital experiences with modern technologies. Let's build something amazing together."
+            {/* <DecryptedText */}
+              {/* text=" */}
+              Passionate developer crafting digital experiences with modern technologies. Let's build something amazing together.
+              {/* "
               animateOn="view"
-              revealDirection="center"
-            />
+              revealDirection="center" */}
+            {/* /> */}
           </motion.div>
 
           {/* CTA Buttons */}
@@ -180,7 +183,7 @@ const Hero = () => {
                   className="count-up-text"
                 />%
               </div>
-              <div className="text-sm text-gray-400">Satisfaction</div>
+              <div className="text-sm text-gray-400">Perfection</div>
             </div>
           </motion.div>
         </motion.div>
@@ -232,16 +235,17 @@ const Hero = () => {
 
           {/* Description */}
           <motion.div 
-            className="text-lg sm:text-xl text-gray-300 leading-relaxed text-center max-w-lg"
+            className="text-lg sm:text-xl leading-relaxed text-center max-w-lg"
+            style={{ color: 'var(--text-primary)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.3 }}
           >
-            <DecryptedText
+            {/* <DecryptedText */}
               text="Passionate developer crafting digital experiences with modern technologies. Let's build something amazing together."
               animateOn="view"
               revealDirection="center"
-            />
+             {/* /> */}
           </motion.div>
 
           {/* Photo - Mobile */}
@@ -327,7 +331,7 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-indigo-400">100%</div>
-              <div className="text-sm text-gray-400">Satisfaction</div>
+              <div className="text-sm text-gray-400">Perfection</div>
             </div>
           </motion.div>
         </motion.div>
