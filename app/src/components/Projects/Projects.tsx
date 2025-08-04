@@ -1,4 +1,6 @@
 const gihub = import.meta.env.VITE_GITHUB;
+import { Tooltip } from 'antd';
+
 const empGithub = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM;
 const taskGithub = import.meta.env.VITE_TASK_FLOW_NAVIGATOR;
 const formGithub = import.meta.env.VITE_FORM_VALIDATION;
@@ -77,23 +79,21 @@ const Projects = () => {
                     {project.title}
                   </h3>
                   {project.tooltip && (
-                    <div className="relative group/info">
+                    <Tooltip
+                      title={
+                        <div className="text-left max-w-md">
+                          <div className="font-semibold text-blue-300 mb-2">{project.title}</div>
+                          <div className="text-gray-300 leading-relaxed text-sm">{project.tooltip}</div>
+                        </div>
+                      }
+                      placement="top"
+                      color="#1f2937"
+                      overlayStyle={{ maxWidth: '400px' }}
+                    >
                       <svg className="w-5 h-5 hover:text-blue-300 cursor-help transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20" style={{ color: 'var(--accent-primary)' }}>
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                       </svg>
-                      <div 
-                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-8 py-6 text-sm rounded-lg opacity-0 group-hover/info:opacity-100 transition-opacity duration-300 pointer-events-none z-10 max-w-4xl text-left shadow-lg border"
-                        style={{
-                          background: 'var(--bg-tertiary)',
-                          color: 'var(--text-primary)',
-                          borderColor: 'var(--border-primary)',
-                          boxShadow: '0 10px 25px var(--shadow-primary)'
-                        }}
-                      >
-                        {project.tooltip}
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent" style={{ borderBottomColor: 'var(--bg-tertiary)' }}></div>
-                      </div>
-                    </div>
+                    </Tooltip>
                   )}
                 </div>
                 <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
@@ -156,7 +156,7 @@ const Projects = () => {
         {/* View more projects button */}
         <div className="text-center mt-12">
           <a
-            href="https://github.com/yourusername"
+            href={gihub}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"

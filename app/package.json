@@ -13,6 +13,7 @@
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.7",
+    "antd": "^5.26.7",
     "aos": "^2.3.4",
     "dotenv": "^16.5.0",
     "framer-motion": "^12.23.6",
