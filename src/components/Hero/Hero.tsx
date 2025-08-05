@@ -146,7 +146,7 @@ const Hero = () => {
             </a>
             <a
               href="#projects"
-              className="px-8 py-4 bg-transparent border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+              className="px-8 py-4 bg-transparent border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-black! font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
             >
               View Projects
             </a>
