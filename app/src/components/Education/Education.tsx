@@ -1,3 +1,5 @@
+import CertificateViewer from '../CertificateViewer/CertificateViewer';
+
 const education = [
   {
     degree: "B.E. in Computer Science and Engineering",
@@ -8,27 +10,6 @@ const education = [
     degree: "Pre-University – Science Stream",
     college: "Sri Sathya Sai Loka Seva Pre-University College, Alike",
     year: "2019 – 2021",
-  },
-];
-
-const certifications = [
-  {
-    title: "React - The Complete Guide",
-    platform: "Udemy",
-    year: "2024",
-    link: "https://www.udemy.com/certificate/example", // optional
-  },
-  {
-    title: "Python for Data Science",
-    platform: "Coursera",
-    year: "2023",
-    link: "https://coursera.org/verify/example",
-  },
-  {
-    title: "DSA Self-Paced Course",
-    platform: "GeeksforGeeks",
-    year: "2023",
-    link: "",
   },
 ];
 
@@ -101,45 +82,7 @@ const Education = () => {
               </div>
               <h3 className="text-2xl font-semibold" style={{ color: 'var(--text-primary)' }}>Certifications</h3>
             </div>
-            <div className="space-y-6">
-              {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className="group backdrop-blur-sm p-6 rounded-2xl border shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/40"
-                  style={{
-                    background: 'var(--bg-secondary)',
-                    borderColor: 'var(--border-secondary)',
-                    boxShadow: '0 4px 6px var(--shadow-secondary)'
-                  }}
-                >
-                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                      <h4 className="text-lg font-semibold group-hover:text-blue-200 transition-colors duration-300 mb-2" style={{ color: 'var(--accent-secondary)' }}>
-                        {cert.title}
-                      </h4>
-                      <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                        {cert.platform} • {cert.year}
-                      </p>
-                    </div>
-                    {cert.link && (
-                      <a
-                        href={cert.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 border rounded-xl transition-all duration-300 text-sm font-medium"
-                        style={{
-                          background: 'var(--bg-tertiary)',
-                          borderColor: 'var(--border-primary)',
-                          color: 'var(--accent-primary)'
-                        }}
-                      >
-                        View Certificate →
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <CertificateViewer />
           </div>
         </div>
 
