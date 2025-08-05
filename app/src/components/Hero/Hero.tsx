@@ -242,9 +242,10 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.3 }}
           >
             {/* <DecryptedText */}
-              text="Passionate developer crafting digital experiences with modern technologies. Let's build something amazing together."
-              animateOn="view"
-              revealDirection="center"
+              {/* text=" */}
+              Passionate developer crafting digital experiences with modern technologies. Let's build something amazing together."
+              {/* animateOn="view" */}
+              {/* revealDirection="center" */}
              {/* /> */}
           </motion.div>
 

@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import aiDark from '../../assets/Certificate Logo/aiDark.png';
+import webDark from '../../assets/Certificate Logo/webDark.png';
+import aiLight from '../../assets/Certificate Logo/aiLight.png';
+import webLight from '../../assets/Certificate Logo/webLight.png';
+import { useState } from 'react';
 import PDFModal from '../PDFModal/PDFModal';
 
 // Import all certificate PDFs
@@ -10,6 +14,7 @@ import naturalLanguageProcessing from '../../assets/Certificates/Natural Languag
 import programmingInJava from '../../assets/Certificates/Programming In Java.pdf';
 import theJoyOfComputing from '../../assets/Certificates/The Joy Of Computing Using Python.pdf';
 import webApplicationDevelopment from '../../assets/Certificates/Web Application Development.pdf';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface Certificate {
   id: string;
@@ -17,7 +22,7 @@ interface Certificate {
   platform: string;
   year: string;
   filename: string;
-  domain: 'AI' | 'Web';
+  domain: 'AI' | 'Web Dev';
 }
 
 const certificates: Certificate[] = [
@@ -69,7 +74,7 @@ const certificates: Certificate[] = [
     platform: 'NPTEL',
     year: '2024',
     filename: cloudComputing,
-    domain: 'Web'
+    domain: 'Web Dev'
   },
   {
     id: 'programming-java',
@@ -77,7 +82,7 @@ const certificates: Certificate[] = [
     platform: 'NPTEL',
     year: '2024',
     filename: programmingInJava,
-    domain: 'Web'
+    domain: 'Web Dev'
   },
   {
     id: 'web-application-development',
@@ -85,17 +90,18 @@ const certificates: Certificate[] = [
     platform: 'Rooman Technologies Pvt Ltd',
     year: '2024',
     filename: webApplicationDevelopment,
-    domain: 'Web'
+    domain: 'Web Dev'
   }
 ];
 
 const CertificateViewer = () => {
-  const [expandedDomain, setExpandedDomain] = useState<'AI' | 'Web' | null>(null);
+  const { theme } = useTheme();
+  const [expandedDomain, setExpandedDomain] = useState<'AI' | 'Web Dev' | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const aiCertificates = certificates.filter(cert => cert.domain === 'AI');
-  const webCertificates = certificates.filter(cert => cert.domain === 'Web');
+  const webCertificates = certificates.filter(cert => cert.domain === 'Web Dev');
 
   const handleCertificateClick = (certificate: Certificate) => {
     setSelectedCertificate(certificate);
@@ -114,7 +120,7 @@ const CertificateViewer = () => {
     certificates, 
     icon
   }: { 
-    domain: 'AI' | 'Web'; 
+    domain: 'AI' | 'Web Dev'; 
     certificates: Certificate[]; 
     icon: string; 
   }) => (
@@ -129,10 +135,8 @@ const CertificateViewer = () => {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
-              <span className="text-2xl" style={{ color: 'var(--accent-primary)' }}>
-                {icon}
-              </span>
+            <div className="w-11 h-12 rounded-xl flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+              <img src={icon} alt="Certificate Logo" className="w-12 h-12" />
             </div>
             <div>
               <h3 className="text-xl font-semibold group-hover:text-blue-200 transition-colors duration-300" style={{ color: 'var(--accent-secondary)' }}>
@@ -186,16 +190,16 @@ const CertificateViewer = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleCertificateClick(cert)}
-                    className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-teal-600/20 border border-blue-500/30 rounded-xl text-blue-300 hover:bg-gradient-to-r hover:from-blue-600/40 hover:to-teal-600/40 transition-all duration-300 text-sm font-medium"
+                    className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-teal-600/20 border border-blue-500/30 rounded-xl text-blue-300! hover:bg-gradient-to-r hover:from-blue-600/40 hover:to-teal-600/40 transition-all duration-300 text-sm font-normal"
                   >
-                    View Certificate →
+                    View Certificate
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => handleDownload(cert)}
                     className="px-4 py-2 bg-gradient-to-r from-green-600/20 to-emerald-600/20 border border-green-500/30 rounded-xl text-green-300 hover:bg-gradient-to-r hover:from-green-600/40 hover:to-emerald-600/40 transition-all duration-300 text-sm font-medium"
                   >
                     Download
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -210,12 +214,12 @@ const CertificateViewer = () => {
       <DomainSection 
         domain="AI" 
         certificates={aiCertificates} 
-        icon="🤖" 
+        icon={theme === 'dark' ? aiDark : aiLight} 
       />
       <DomainSection 
-        domain="Web" 
+        domain="Web Dev" 
         certificates={webCertificates} 
-        icon="🌐" 
+        icon={theme === 'dark' ? webDark : webLight} 
       />
 
       {selectedCertificate && (

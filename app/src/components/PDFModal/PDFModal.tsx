@@ -6,7 +6,7 @@ interface Certificate {
   platform: string;
   year: string;
   filename: string;
-  domain: 'AI' | 'Web';
+  domain: 'AI' | 'Web Dev';
 }
 
 interface PDFModalProps {
@@ -26,6 +26,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, certificate, onDow
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
+      // This is crucial for preventing the background from scrolling
       document.body.style.overflow = 'hidden';
     }
 
@@ -42,23 +43,27 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, certificate, onDow
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
-      
+
       {/* Modal */}
-      <div className="relative w-full max-w-6xl h-full max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden" style={{ background: 'var(--bg-primary)' }}>
+      <div className="relative w-full max-w-6xl h-full max-h-[95vh] flex flex-col rounded-2xl shadow-2xl overflow-hidden" style={{ background: 'var(--bg-primary)' }}>
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-secondary)' }}>
-          <div>
-            <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>{certificate.title}</h2>
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{certificate.platform} • {certificate.year}</p>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 md:p-6 border-b" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-secondary)' }}>
+          <div className="flex-1 min-w-0">
+            <h2 className="text-lg md:text-xl font-semibold truncate" style={{ color: 'var(--text-primary)' }}>
+              {certificate.title}
+            </h2>
+            <p className="text-xs sm:text-sm" style={{ color: 'var(--text-secondary)' }}>
+              {certificate.platform} • {certificate.year}
+            </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <button
               onClick={onDownload}
-              className="px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2"
+              className="px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2 text-sm"
               style={{ background: 'var(--accent-primary)', color: 'white' }}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,9 +84,9 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, certificate, onDow
         </div>
 
         {/* PDF Viewer */}
-        <div className="flex-1 h-full">
+        <div className="flex-1 relative">
           <iframe
-            src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+            src={pdfUrl}
             className="w-full h-full border-0"
             title={certificate.title}
           />
@@ -91,4 +96,4 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, certificate, onDow
   );
 };
 
-export default PDFModal; 
+export default PDFModal;
