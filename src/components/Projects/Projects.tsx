@@ -6,8 +6,8 @@ const empGithub = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM;
 const taskGithub = import.meta.env.VITE_TASK_FLOW_NAVIGATOR;
 const formGithub = import.meta.env.VITE_FORM_VALIDATION;
 
-const empDemo = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM_LIVE;
-// const taskDemo = import.meta.env.VITE_TASK_FLOW_NAVIGATOR_LIVE;
+// const empDemo = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM_LIVE;
+const taskDemo = import.meta.env.VITE_TASK_FLOW_NAVIGATOR_LIVE;
 const formDemo = import.meta.env.VITE_FORM_VALIDATION_LIVE;
 
 
@@ -17,7 +17,7 @@ const projects = [
     description: "Full-stack web application with secure role-based access control and JWT authentication.",
     tooltip: "A comprehensive full-stack web application featuring secure role-based access control and JWT authentication. Built with React.js frontend and NestJS backend, it provides a complete solution for managing employee data with multi-level user hierarchy, RESTful APIs, and MySQL database integration for efficient CRUD operations. Includes employee registration, editing, deletion, and role-based permissions with Ant Design UI components.",
     github: empGithub,
-    demo: empDemo,
+    demo: "#",
     tech: ["React", "NestJS", "MySQL", "JWT", "Ant Design", "TypeScript"],
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     description: "Multi-functional web application with Ant Design Steps component and secure authentication flow.",
     tooltip: "A comprehensive multi-functional web application built with React and Ant Design Steps component. Features include secure login system with form validation, mobile number OTP verification for two-factor authentication, pagination logic for dynamic card display, and a fully functional To-Do List with add, edit, delete, and complete task features using component state management. Each step handles distinct tasks with user feedback mechanisms and improved UI performance.",
     github: taskGithub,
-    demo: '#',
+    demo: taskDemo,
     tech: ["React", "Ant Design", "JavaScript", "CSS", "State Management"],
   },
   {
@@ -41,11 +41,9 @@ const projects = [
 const Projects = () => {
   const navigate = useNavigate();
 
-  const handleDemoClick = (demoUrl: string, projectTitle: string) => {
-    if (projectTitle === "Task Flow Navigator") {
+  const handleDemoClick = (demoUrl: string) => {
+    if (!demoUrl || demoUrl === '#') {
       navigate('/under-construction');
-    } else if (!demoUrl || demoUrl === '#') {
-      alert('Live demo not available yet!');
     } else {
       window.open(demoUrl, '_blank', 'noopener,noreferrer');
     }
@@ -150,7 +148,7 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDemoClick(project.demo, project.title);
+                    handleDemoClick(project.demo);
                   }}
                   className="flex-1 px-4 py-2 rounded-xl bg-transparent border text-center transition-all duration-300 text-sm font-medium hover:scale-105"
                   style={{

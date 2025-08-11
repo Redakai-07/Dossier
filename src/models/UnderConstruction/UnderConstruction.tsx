@@ -40,17 +40,17 @@ const UnderConstruction = () => {
   //   },
   // };
 
-  const pulseVariants = {
-    animate: {
-      scale: [1, 1.1, 1],
-      opacity: [0.7, 1, 0.7],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut" as Easing,
-      },
-    },
-  };
+  // const pulseVariants = {
+  //   animate: {
+  //     scale: [1, 1.1, 1],
+  //     opacity: [0.7, 1, 0.7],
+  //     transition: {
+  //       duration: 2,
+  //       repeat: Infinity,
+  //       ease: "easeInOut" as Easing,
+  //     },
+  //   },
+  // };
 
   return (
     <section className="relative min-h-screen w-full text-white overflow-hidden theme-transition" style={{
@@ -123,16 +123,16 @@ const UnderConstruction = () => {
                 backgroundSize: "200% 200%",
               }}
             >
-              🚧 Under Construction 🚧
+              Under Construction :{'('}
             </motion.h1>
-            <motion.h2 
+            {/*<motion.h2 
               className="text-3xl md:text-4xl font-bold mb-6" 
               style={{ color: 'var(--text-primary)' }}
               variants={pulseVariants}
               animate="animate"
             >
               We're Building Something Amazing!
-            </motion.h2>
+            </motion.h2>*/}
             <p className="text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               This page is currently being developed with love and care. 
               Concerned person is at work making it awesome!
