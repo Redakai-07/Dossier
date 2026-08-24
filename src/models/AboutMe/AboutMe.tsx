@@ -1,4 +1,5 @@
 import { useTheme } from '../../contexts/ThemeContext';
+import NextChapter from '../../components/NextChapter/NextChapter';
 
 import profileImg from '../../assets/profile.jpg';
 import { motion } from 'framer-motion';
@@ -540,6 +541,23 @@ const AboutMe = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Next Chapter in Dossier */}
+        <div className="mt-16">
+          <NextChapter
+            prevPage={{
+              title: "Academic & Credentials",
+              path: "/education"
+            }}
+            nextPage={{
+              chapterNumber: "Page: 04 / 04",
+              title: "Let's Connect & Collaborate",
+              description: "Reach out for opportunities, discussions, or questions. Direct message and contact channels.",
+              path: "/contact",
+              badgeText: "NEXT CHAPTER"
+            }}
+          />
         </div>
       </div>
     </section>

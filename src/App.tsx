@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Layout from './components/Layout/Layout';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { ExplorationProvider } from './contexts/ExplorationContext';
 import { Suspense } from 'react';
 import { Home, Education, AboutMe, Contact, PageNotFound, UnderConstruction } from './utils/dynamicImports';
 
@@ -16,40 +17,42 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={
-              <Suspense fallback={<LoadingSpinner />}>
-                <Home />
-              </Suspense>
-            } />
-            <Route path="education" element={
-              <Suspense fallback={<LoadingSpinner />}>
-                <Education />
-              </Suspense>
-            } />
-            <Route path="about" element={
-              <Suspense fallback={<LoadingSpinner />}>
-                <AboutMe />
-              </Suspense>
-            } />
-            <Route path="contact" element={
-              <Suspense fallback={<LoadingSpinner />}>
-                <Contact />
-              </Suspense>
-            } />
-            <Route path="under-construction" element={
-              <Suspense fallback={<LoadingSpinner />}>
-                <UnderConstruction />
-              </Suspense>
-            } />
-            <Route path="*" element={
-              <Suspense fallback={<LoadingSpinner />}>
-                <PageNotFound />
-              </Suspense>
-            } />
-          </Route>
-        </Routes>
+        <ExplorationProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Home />
+                </Suspense>
+              } />
+              <Route path="education" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Education />
+                </Suspense>
+              } />
+              <Route path="about" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <AboutMe />
+                </Suspense>
+              } />
+              <Route path="contact" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <Contact />
+                </Suspense>
+              } />
+              <Route path="under-construction" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <UnderConstruction />
+                </Suspense>
+              } />
+              <Route path="*" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                  <PageNotFound />
+                </Suspense>
+              } />
+            </Route>
+          </Routes>
+        </ExplorationProvider>
       </Router>
     </ThemeProvider>
   );

@@ -1,6 +1,7 @@
 import { useRef, useState  } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
+import NextChapter from "../../components/NextChapter/NextChapter";
 const public_key = 'V--jVitZy_amZLD-O';
 const service_id = 'service_wjah12b';
 const template_id = 'template_w0va6mc';
@@ -69,42 +70,66 @@ const Contact = () => {
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
       </div>
 
-      <Toaster position="top-right" />
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <div className="mb-16">
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <Toaster position="top-right" />
+        
+        {/* Header */}
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-6">
             Get In Touch
           </h2>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            Got a question, proposal, or just want to say hi? Fill out the form below and I'll get back to you!
+            Have a project in mind, want to discuss software architecture, or just say hello? Reach out!
           </p>
         </div>
 
-        <div className="backdrop-blur-sm border rounded-2xl p-8 shadow-xl" style={{
+        {/* Contact Form and Details */}
+        <div className="max-w-3xl mx-auto backdrop-blur-sm border rounded-2xl p-8 shadow-2xl mb-16" style={{
           background: 'var(--bg-secondary)',
-          borderColor: 'var(--border-secondary)',
-          boxShadow: '0 10px 25px var(--shadow-primary)'
+          borderColor: 'var(--border-secondary)'
         }}>
-          <form ref={formRef} onSubmit={sendEmail} className="flex flex-col gap-6 text-left">
+          <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input
-                type="text"
-                name="from_name"
-                placeholder="Name"
+              <div>
+                <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Your Name</label>
+                <input
+                  type="text"
+                  name="from_name"
+                  required
+                  placeholder="John Doe"
+                  className="w-full px-4 py-3 rounded-xl border outline-none transition-all duration-300 focus:border-blue-400"
+                  style={{
+                    background: 'var(--bg-tertiary)',
+                    borderColor: 'var(--border-secondary)',
+                    color: 'var(--text-primary)'
+                  }}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Your Email</label>
+                <input
+                  type="email"
+                  name="from_email"
+                  required
+                  placeholder="john@example.com"
+                  className="w-full px-4 py-3 rounded-xl border outline-none transition-all duration-300 focus:border-blue-400"
+                  style={{
+                    background: 'var(--bg-tertiary)',
+                    borderColor: 'var(--border-secondary)',
+                    color: 'var(--text-primary)'
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Message</label>
+              <textarea
+                name="message"
                 required
-                className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
-                style={{
-                  background: 'var(--bg-tertiary)',
-                  borderColor: 'var(--border-secondary)',
-                  color: 'var(--text-primary)'
-                }}
-              />
-              <input
-                type="email"
-                name="from_email"
-                placeholder="Email"
-                required
-                className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400"
+                rows={5}
+                placeholder="Write your message here..."
+                className="w-full px-4 py-3 rounded-xl border outline-none transition-all duration-300 focus:border-blue-400 resize-none"
                 style={{
                   background: 'var(--bg-tertiary)',
                   borderColor: 'var(--border-secondary)',
@@ -112,51 +137,19 @@ const Contact = () => {
                 }}
               />
             </div>
-            <textarea
-              name="message"
-              rows={6}
-              placeholder="Message"
-              required
-              className="px-6 py-4 rounded-xl border focus:ring-2 focus:ring-blue-500 focus:border-blue-400 transition-all duration-300 placeholder-gray-400 resize-none"
-              style={{
-                background: 'var(--bg-tertiary)',
-                borderColor: 'var(--border-secondary)',
-                color: 'var(--text-primary)'
-              }}
-            />
+
             <button
               type="submit"
               disabled={loading}
-              className={`px-8 py-4 rounded-xl text-white font-semibold transition-all duration-300 transform hover:scale-105 ${
-                loading
-                  ? "cursor-not-allowed"
-                  : "shadow-lg hover:shadow-xl"
-              }`}
-              style={{
-                background: loading ? 'var(--bg-muted)' : 'var(--gradient-primary)'
-              }}
+              className="w-full py-4 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] cursor-pointer text-white disabled:opacity-50"
             >
-              {loading ? (
-                <span className="flex items-center justify-center gap-3">
-                  <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4" fill="none" />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                    />
-                  </svg>
-                  Sending...
-                </span>
-              ) : (
-                "Send Message"
-              )}
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>
 
-        {/* Contact info */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Contact Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="flex flex-col items-center p-6 backdrop-blur-sm border rounded-xl" style={{
             background: 'var(--bg-secondary)',
             borderColor: 'var(--border-secondary)'
@@ -196,6 +189,23 @@ const Contact = () => {
             <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>Response Time</h3>
             <p style={{ color: 'var(--text-secondary)' }}>Within 24 hours</p>
           </div>
+        </div>
+
+        {/* Return / Next Chapter in Dossier */}
+        <div className="mt-8">
+          <NextChapter
+            prevPage={{
+              title: "Mindset & Story",
+              path: "/about"
+            }}
+            nextPage={{
+              chapterNumber: "FILE 01 / 04",
+              title: "Return to Overview & Projects",
+              description: "You've toured all chapters of the portfolio! Return to the overview or review featured full-stack projects.",
+              path: "/",
+              badgeText: "DOSSIER COMPLETED"
+            }}
+          />
         </div>
       </div>
     </section>

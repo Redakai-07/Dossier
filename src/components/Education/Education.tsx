@@ -1,4 +1,5 @@
 import CertificateViewer from '../CertificateViewer/CertificateViewer';
+import NextChapter from '../NextChapter/NextChapter';
 
 const education = [
   {
@@ -98,6 +99,23 @@ const Education = () => {
               workshops, and hands-on projects to stay current with the latest technologies.
             </p>
           </div>
+        </div>
+
+        {/* Next Chapter in Dossier */}
+        <div className="mt-16">
+          <NextChapter
+            prevPage={{
+              title: "Overview & Projects",
+              path: "/"
+            }}
+            nextPage={{
+              chapterNumber: "Page: 03 / 04",
+              title: "The Person Behind the Code",
+              description: "Discover what drives me, my engineering philosophy, problem-solving mindset, and personal journey.",
+              path: "/about",
+              badgeText: "NEXT CHAPTER"
+            }}
+          />
         </div>
       </div>
     </section>

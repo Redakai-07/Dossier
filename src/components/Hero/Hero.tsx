@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Suspense } from 'react';
 import type { Easing } from 'framer-motion';
 import { SplitText, CountUp } from '../../utils/dynamicImports';
+import ProfileExplorationDial from '../ProfileDial/ProfileExplorationDial';
 
 // Loading component for dynamic imports
 const ComponentLoader = () => (
@@ -272,45 +273,18 @@ const Hero = () => {
              {/* /> */}
           </motion.div>
 
-          {/* Photo - Mobile */}
+          {/* Photo with Interactive Exploration Dial - Mobile */}
           <motion.div
-            className="flex justify-center items-center"
+            className="flex justify-center items-center py-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.3 }}
           >
-            <div className="relative">
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-              
-              {/* Main image container */}
-              <motion.div
-                className="relative"
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 5,
-                  transition: { duration: 0.3 } 
-                }}
-              >
-                <img
-                  src={img}
-                  alt="Professional headshot"
-                  className="relative z-10 w-64 h-64 sm:w-80 sm:h-80 object-cover rounded-full shadow-2xl border-4 border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-teal-500/10 backdrop-blur-sm"
-                />
-                
-                {/* Floating elements around image */}
-                <motion.div
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-teal-500 rounded-full"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-                />
-              </motion.div>
-            </div>
+            <ProfileExplorationDial
+              imageSrc={img}
+              alt="Venkatesh Prabhatha Kana"
+              size="mobile"
+            />
           </motion.div>
 
           {/* CTA Buttons - Mobile */}
@@ -360,43 +334,16 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right Image Side - Desktop Only */}
+        {/* Right Image Side with Interactive Exploration Dial - Desktop Only */}
         <motion.div
           className="hidden lg:flex w-full lg:w-1/2 justify-center items-center mt-12 lg:mt-0"
           variants={itemVariants}
         >
-          <div className="relative">
-            {/* Glow effect behind image */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-            
-            {/* Main image container */}
-            <motion.div
-              className="relative"
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                transition: { duration: 0.3 } 
-              }}
-            >
-              <img
-                src={img}
-                alt="Professional headshot"
-                className="relative z-10 w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-full shadow-2xl border-4 border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-teal-500/10 backdrop-blur-sm"
-              />
-              
-              {/* Floating elements around image */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-6 h-6 bg-teal-500 rounded-full"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-              />
-            </motion.div>
-          </div>
+          <ProfileExplorationDial
+            imageSrc={img}
+            alt="Venkatesh Prabhatha Kana"
+            size="desktop"
+          />
         </motion.div>
       </div>
 
