@@ -1,10 +1,10 @@
 import { useRef, useState  } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
-const public_key = import.meta.env.VITE_PUBLIC_KEY;
-const service_id = import.meta.env.VITE_SERVICE_ID;
-const template_id = import.meta.env.VITE_TEMPLATE_ID;
-const mail_id = import.meta.env.VITE_EMAIL;
+const public_key = 'V--jVitZy_amZLD-O';
+const service_id = 'service_wjah12b';
+const template_id = 'template_w0va6mc';
+const mail_id = 'vprabhathak04@gmail.com';
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);

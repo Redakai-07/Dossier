@@ -3,14 +3,6 @@ import { useTheme } from '../../contexts/ThemeContext';
 import profileImg from '../../assets/profile.jpg';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-const HighSchool = import.meta.env.VITE_HIGH_SCHOOL; 
-const PUC = import.meta.env.VITE_PUC; 
-const BE = import.meta.env.VITE_BE; 
-const Inventech = import.meta.env.VITE_INVENTECH; 
-const highSchoolLink = import.meta.env.VITE_HIGH_SCHOOL_LINK;
-const pucLink = import.meta.env.VITE_PUC_LINK;
-const beLink = import.meta.env.VITE_BE_LINK;
-const inventechLink = import.meta.env.VITE_INVENTECH_LINK;
 
 import problemSolving from '../../assets/What Drives Me/problemSolvingDark.png';
 import learningNewTech from '../../assets/What Drives Me/learningNewTechDark.png';
@@ -89,34 +81,42 @@ const timeline = [
   {
     year: '2016-2019',
     title: 'High School',
-    subtitle: HighSchool,
+    subtitle: 'SSLC',
     // description: 'Completed my high school education with a strong foundation in science and mathematics.',
-    link: highSchoolLink,
+    link: 'https://alikeonline.org/ssslst-institutions/high-school/',
     type: 'education'
   },
   {
     year: '2019-2021',
     title: 'Pre-University College',
-    subtitle: PUC,
+    subtitle: 'PCMB',
     // description: 'Focused on advanced science subjects and prepared for engineering entrance exams.',
-    link: pucLink,
+    link: 'https://alikeonline.org/ssslst-institutions/pre-univesity-college/',
     type: 'education'
   },
   {
     year: '2021-2025',
     title: 'Bachelor of Engineering',
-    subtitle: BE,
+    subtitle: 'Computer Science Engineering',
     // description: 'Currently pursuing my BE degree with focus on software development and modern technologies.',
-    link: beLink,
+    link: 'https://gsksjti.ac.in/',
     type: 'education'
   },
   {
     year: '2025',
-    title: 'Software Developer Intern',
-    subtitle: Inventech,
+    title: 'Full Stack Developer Intern',
+    subtitle: 'Inventech Info Solutions',
     // description: 'Working on real-world projects, gaining hands-on experience in full-stack development.',
-    link: inventechLink,
+    link: 'https://inventechinfo.com/',
     type: 'experience'
+  },
+  {
+    year:'2026',
+    title: 'Master of Technology',
+    subtitle: 'Software Engineering',
+    link: 'https://www.manit.ac.in/',
+    type: 'education'
+
   }
 ];
 
@@ -196,21 +196,81 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>My Story</h3>
-              <p className="leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
-                I'm a Computer Science graduate passionate about building well-crafted digital experiences. 
-                With hands-on experience at <span className="font-medium" style={{ color: 'var(--accent-secondary)' }}>Inventech</span> and{' '}
-                <span className="font-medium" style={{ color: 'var(--accent-secondary)' }}>Rooman Technologies</span>, I specialize in crafting
-                scalable full-stack applications.
+              <h3
+                className="text-2xl font-semibold mb-4"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                My Story
+              </h3>
+
+              <p
+                className="leading-relaxed mb-4"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                I'm an M.Tech Software Engineering student at{' '}
+                <span
+                  className="font-medium"
+                  style={{ color: 'var(--accent-secondary)' }}
+                >
+                  MANIT Bhopal
+                </span>
+                , with a background in Computer Science and a passion for building
+                well-crafted digital experiences. With hands-on experience at{' '}
+                <span
+                  className="font-medium"
+                  style={{ color: 'var(--accent-secondary)' }}
+                >
+                  Inventech
+                </span>{' '}
+                and{' '}
+                <span
+                  className="font-medium"
+                  style={{ color: 'var(--accent-secondary)' }}
+                >
+                  Rooman Technologies
+                </span>
+                , I specialize in developing scalable full-stack applications.
               </p>
-              <p className="leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
-                My expertise spans modern technologies including <strong style={{ color: 'var(--accent-secondary)' }}>React.js</strong>,{' '}
-                <strong style={{ color: 'var(--accent-secondary)' }}>NestJS</strong>, <strong style={{ color: 'var(--accent-secondary)' }}>Redux</strong>, and{' '}
-                <strong style={{ color: 'var(--accent-secondary)' }}>MySQL</strong>. Whether it's designing smooth UI or architecting clean backend logic — 
-                I love bringing ideas to life and pushing projects across the finish line.
+
+              <p
+                className="leading-relaxed mb-4"
+                style={{ color: 'var(--text-muted)' }}
+              >
+                My expertise spans modern technologies including{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>
+                  React.js
+                </strong>
+                ,{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>
+                  NestJS
+                </strong>
+                ,{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>
+                  Redux
+                </strong>
+                , and{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>
+                  MySQL
+                </strong>
+                . I'm also expanding my knowledge in{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>
+                  Machine Learning
+                </strong>{' '}
+                and{' '}
+                <strong style={{ color: 'var(--accent-secondary)' }}>
+                  Artificial Intelligence
+                </strong>
+                , while strengthening my foundations in software engineering and
+                problem solving.
               </p>
-              <p className="leading-relaxed" style={{ color: 'var(--text-muted)' }}>
-                I'm always exploring new technologies and best practices to stay at the forefront of web development.
+
+              <p
+                className="leading-relaxed"
+                style={{ color: 'var(--text-muted)' }}
+              >
+                I'm always exploring new technologies, working on meaningful projects,
+                and learning better ways to turn ideas into reliable, impactful
+                software.
               </p>
             </motion.div>
 

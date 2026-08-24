@@ -1,14 +1,14 @@
-const gihub = import.meta.env.VITE_GITHUB;
+const github = 'https://github.com/Redakai-07';
 import { Tooltip } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-const empGithub = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM;
-const taskGithub = import.meta.env.VITE_TASK_FLOW_NAVIGATOR;
-const formGithub = import.meta.env.VITE_FORM_VALIDATION;
+const empGithub = 'https://github.com/Redakai-07/Employee';
+const taskGithub = 'https://github.com/Redakai-07/Task-Flow-Navigation';
+const formGithub = 'https://github.com/Redakai-07/Form-Validation';
 
 // const empDemo = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM_LIVE;
-const taskDemo = import.meta.env.VITE_TASK_FLOW_NAVIGATOR_LIVE;
-const formDemo = import.meta.env.VITE_FORM_VALIDATION_LIVE;
+const taskDemo = 'https://taskflow-07.web.app/';
+const formDemo = 'https://formvalidation-07.web.app/';
 
 
 const projects = [
@@ -166,7 +166,7 @@ const Projects = () => {
         {/* View more projects button */}
         <div className="text-center mt-12">
           <a
-            href={gihub}
+            href={github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"

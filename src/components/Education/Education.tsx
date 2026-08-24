@@ -2,14 +2,14 @@ import CertificateViewer from '../CertificateViewer/CertificateViewer';
 
 const education = [
   {
-    degree: "B.E. in Computer Science and Engineering",
-    college: "Govt Sri Krishnarajendra Technological Institute, Bengaluru",
-    year: "2021 – 2025",
+    degree: "M.Tech in Software Engineering",
+    college: "Maulana Azad National Institute of Technology, Bhopal",
+    year: "2026 - Present",
   },
   {
-    degree: "Pre-University – Science Stream",
-    college: "Sri Sathya Sai Loka Seva Pre-University College, Alike",
-    year: "2019 – 2021",
+    degree: "B.E in Computer Science and Engineering",
+    college: "Govt Sri Krishnarajendra Technological Institute, Bengaluru",
+    year: "2021 – 2025",
   },
 ];
 
