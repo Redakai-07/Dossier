@@ -5,13 +5,23 @@ import { useNavigate } from 'react-router-dom';
 const empGithub = 'https://github.com/Redakai-07/Employee';
 const taskGithub = 'https://github.com/Redakai-07/Task-Flow-Navigation';
 const formGithub = 'https://github.com/Redakai-07/Form-Validation';
+const momentumGithub = 'https://github.com/Redakai-07/Momentum';
 
 // const empDemo = import.meta.env.VITE_EMPLOYEE_MANAGEMENT_SYSTEM_LIVE;
 const taskDemo = 'https://taskflow-07.web.app/';
 const formDemo = 'https://formvalidation-07.web.app/';
+const momentumDemo = 'https://momentumz.web.app/'
 
 
 const projects = [
+  {
+    title: "Momentum",
+    description: "Offline-first personal productivity app for task planning, time tracking, scheduling, and consistency.",
+    tooltip: "A minimalistic, offline-first personal productivity application designed to reduce friction and help users focus on what to do next. Built with Next.js, TypeScript, Tailwind CSS, Zustand, Dexie/IndexedDB, and Capacitor for Android. Features include Daily tasks, Reminders, Occasional tasks, custom sections with flexible scheduling, time-based performance tracking, streaks, recovery days, calendar planning, Next Action guidance, intelligent local notifications, dark mode, and customizable accent colors. All core productivity data is stored locally on the device, allowing the application to function without an account, backend, or internet connection.",
+    github: momentumGithub,
+    demo: momentumDemo,
+    tech: [ "Next.js", "TypeScript", "Tailwind CSS", "Zustand", "Dexie", "IndexedDB", "Capacitor" ],
+  },
   {
     title: "Employee Management System",
     description: "Full-stack web application with secure role-based access control and JWT authentication.",

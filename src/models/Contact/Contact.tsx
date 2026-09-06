@@ -2,7 +2,7 @@ import { useRef, useState  } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import NextChapter from "../../components/NextChapter/NextChapter";
-const public_key = 'V--jVitZy_amZLD-O';
+const public_key = 'FQtvobISPZU-pxQoR';
 const service_id = 'service_wjah12b';
 const template_id = 'template_w0va6mc';
 const mail_id = 'vprabhathak04@gmail.com';
@@ -43,7 +43,7 @@ const Contact = () => {
         service_id,    
         template_id,   
         formRef.current,
-        public_key     
+        public_key    
       );
       toast.success("Message sent successfully!");
       form.reset();
@@ -64,6 +64,17 @@ const Contact = () => {
         color: 'var(--text-primary)'
       }}
     >
+      <Toaster 
+        position="top-right" 
+        containerStyle={{
+          top: 80,
+          zIndex: 99999
+        }}
+        toastOptions={{
+          duration: 4000,
+        }}
+      />
+
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
@@ -71,8 +82,6 @@ const Contact = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <Toaster position="top-right" />
-        
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-teal-400 to-indigo-400 bg-clip-text text-transparent mb-6">
